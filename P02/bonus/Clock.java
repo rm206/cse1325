@@ -5,7 +5,7 @@ public class Clock
         this.hours = hours;
         this.minutes = minutes;
         this.seconds = seconds;
-        rationalize();
+        this.rationalize();
     }
 
     @Override
