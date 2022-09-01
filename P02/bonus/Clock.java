@@ -30,7 +30,7 @@ public class Clock
             }
         }
 
-        if(this.minutes < 0 || this.minutes > 60)
+        if(this.minutes < 0 || this.minutes > 59)
         {
             while(this.minutes < 0)
             {
@@ -46,9 +46,9 @@ public class Clock
 
         if(this.hours < 0 || this.hours > 23)
         {
-            if(this.hours < 0)
+            while(this.hours < 0)
                 this.hours += 24;
-            else
+            while(this.hours > 23)
                 this.hours -= 24;
         }
 
