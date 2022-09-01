@@ -44,6 +44,14 @@ public class Clock
             }
         }
 
+        if(this.hours < 0 || this.hours > 23)
+        {
+            if(this.hours < 0)
+                this.hours += 24;
+            else
+                this.hours -= 24;
+        }
+
     }
     
     private String twoDigit(int i)
