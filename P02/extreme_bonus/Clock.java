@@ -5,6 +5,7 @@ public class Clock
         this.hours = hours;
         this.minutes = minutes;
         this.seconds = seconds;
+        this.rationalize();
     }
 
     public Clock add(int seconds)
@@ -23,6 +24,46 @@ public class Clock
     public String toString()
     {
         return twoDigit(this.hours)+":"+twoDigit(this.minutes)+":"+twoDigit(this.seconds);
+    }
+
+    private void rationalize()
+    {
+        if(this.seconds < 0 || this.seconds > 59)
+        {
+            while(this.seconds < 0)
+            {
+                this.seconds += 60;
+                this.minutes--;
+            }
+            while(this.seconds > 59)
+            {
+                this.seconds -= 60;
+                this.minutes++;
+            }
+        }
+
+        if(this.minutes < 0 || this.minutes > 59)
+        {
+            while(this.minutes < 0)
+            {
+                this.minutes += 60;
+                this.hours--;
+            }
+            while(this.minutes > 59)
+            {
+                this.minutes -= 60;
+                this.hours++;
+            }
+        }
+
+        if(this.hours < 0 || this.hours > 23)
+        {
+            while(this.hours < 0)
+                this.hours += 24;
+            while(this.hours > 23)
+                this.hours -= 24;
+        }
+
     }
 
     private String twoDigit(int i)

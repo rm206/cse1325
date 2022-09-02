@@ -19,7 +19,6 @@ public class Main
         Clock clock = new Clock(hours, minutes, seconds);
         System.out.println("The time is " + clock.toString());
         
-        System.out.println("here");
         int wantToContinue = 1;
         int choice = 0;
         while(wantToContinue != 0)
@@ -62,7 +61,7 @@ public class Main
                             break;
                         }
             }
-            System.out.println("Do you want to continue? (Enter 0 to end)");
+            System.out.println("Do you want to continue? (Enter 0 to end or any number to continue)");
             wantToContinue = sc.nextInt();
         }
     }
