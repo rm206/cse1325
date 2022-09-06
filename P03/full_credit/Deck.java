@@ -32,7 +32,7 @@ public class Deck
     {
         if(deck.isEmpty())
         {
-            throw new DeckEmpty("DeckEmptyException : The deck is empty!");
+            throw new DeckEmpty("\nDeckEmptyException : The deck is empty!\n");
         }
         return deck.pop();
     }
