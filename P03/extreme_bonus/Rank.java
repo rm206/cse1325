@@ -5,7 +5,7 @@ public class Rank
     public Rank(int rank)
     {
         this.rank = rank;
-        points = rank;
+        this.points = rank;
     }
 
     @Override
