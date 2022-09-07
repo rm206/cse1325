@@ -4,13 +4,18 @@ public class Card
     {
         this.rank = rank;
         this.suit = suit;
-        this.points = rank.returnPoints() * suit.returnPoints();
+        this.points = rank.retPoints() * suit.retPoints();
     }
 
     @Override
     public String toString()
     {
         return "" + this.rank + this.suit;
+    }
+
+    public int retPoints()
+    {
+        return this.points;
     }
 
     private Rank rank;

@@ -4,7 +4,7 @@ public enum Suit
     T (4),
     A (3);
 
-    public int returnPoints()
+    public int retPoints()
     {
         return suitID;
     }

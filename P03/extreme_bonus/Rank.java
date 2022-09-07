@@ -14,7 +14,7 @@ public class Rank
         return "" + this.rank;
     }
 
-    public int returnPoints()
+    public int retPoints()
     {
         return this.points;
     }

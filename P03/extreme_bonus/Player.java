@@ -26,6 +26,7 @@ public class Player
     public void addToCurrentDeck(Card card, int i)
     {
         (this.currentDeck)[i] = card;
+        this.currentScore += card.retPoints();
     }
 
     private String name;
