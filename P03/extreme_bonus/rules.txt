@@ -1,0 +1,19 @@
+Flow of the game:
+2 players enter their names and set their passwords.
+Out of one deck of cards, the 2 players are dealt with 4 cards each.
+Each player enters their password to see the 4 cards they were dealt with and the points
+associated with the cards they currently have
+Each card has a certain point value associated to it. The point table is as follows :
+U - 5
+T - 4
+A - 3
+0 - 9 : The face value. Example - 2 is points
+The total points value of a card is given by its rank_point_value * suit_point_value
+For example, 3U is worth 3*5 = 15 points
+After the players have seen their cards and current points, they have the option to swap
+one of their cards with the card on top of the deck. This action is irreversible and the deck
+is not unlimited.
+Once a player is done, they can select that option from the CLI and only the second player
+will be able to continue swapping.
+Once both the players are done, the winner will be revealed.
+Name of the game? DetroitOhio.
