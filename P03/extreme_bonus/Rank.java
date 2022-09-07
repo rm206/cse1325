@@ -5,6 +5,7 @@ public class Rank
     public Rank(int rank)
     {
         this.rank = rank;
+        points = rank;
     }
 
     @Override
@@ -13,6 +14,12 @@ public class Rank
         return "" + this.rank;
     }
 
+    public int returnPoints()
+    {
+        return this.points;
+    }
+
 
     private int rank;
+    private int points;
 }

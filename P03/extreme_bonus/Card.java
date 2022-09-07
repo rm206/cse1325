@@ -4,6 +4,7 @@ public class Card
     {
         this.rank = rank;
         this.suit = suit;
+        this.points = rank.returnPoints() * suit.returnPoints();
     }
 
     @Override
@@ -14,4 +15,5 @@ public class Card
 
     private Rank rank;
     private Suit suit;  
+    private int points;
 }
