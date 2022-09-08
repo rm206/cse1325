@@ -17,10 +17,8 @@ public class DetroitOhio
         System.out.println("Welcome Player 2");
         player2.setNameAndPassword();
 
-        System.out.println("Dealing 4 cards to Player 1");
         for(int i = 0 ; i < 4 ; i++)
             player1.addToCurrentDeck(deck.deal(), i);
-        System.out.println("Dealing 4 cards to Player 2");
         for(int i = 0 ; i < 4 ; i++)
             player2.addToCurrentDeck(deck.deal(), i);
         
@@ -40,27 +38,49 @@ public class DetroitOhio
         while(!(player1Ended && player2Ended))
         {
             if(turn1Or2 == -1)
+                System.out.println("Player 1 goes");    
+            else
+                System.out.println("Player 2 goes");
+            
+            System.out.print("Enter password : ");
+            passwordToMatch = String.valueOf(console.readPassword());
+            if(turn1Or2 == -1)
             {
-                System.out.println("Player 1 goes");
+                while(!player1.isPasswordCorrect(passwordToMatch))
+                {
+                    System.out.println("Incorrect password. Please try again.");
+                    System.out.print("Enter password : ");
+                    passwordToMatch = String.valueOf(console.readPassword());
+                }
             }
             else
             {
-                System.out.println("Player 2 goes");
+                while(!player2.isPasswordCorrect(passwordToMatch))
+                {
+                    System.out.println("Incorrect password. Please try again.");
+                    System.out.print("Enter password : ");
+                    passwordToMatch = String.valueOf(console.readPassword());
+                }
             }
+            
             System.out.println("1. See your cards and total score");
             System.out.println("2. Swap one of your cards for a new card");
             System.out.println("3. Don't take any action and continue");
-            System.out.println("4. Finalize deck");
+            System.out.println("4. Finalize deck (YOU WON'T BE ABLE TO SWAP YOUR CARDS AFTER THIS)");
             choice = sc.nextInt();
             switch(choice)
             {
                 case 1 :
-                    if(turn1Or2 == -1)
-                    {
-                        System.out.print("Enter password : ");
-                        passwordToMatch = sc.nextLine();
-
-                    }
+                        {
+                            if(turn1Or2 == -1)
+                                player1.showCardsAndPoints();
+                            else
+                                player2.showCardsAndPoints();
+                        }
+                case 2 :
+                        {
+                            if(turn1Or2 == -1)
+                        }
             }
         }
     }

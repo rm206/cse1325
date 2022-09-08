@@ -4,7 +4,8 @@ import java.io.Console;
 
 public class Player {
 
-    public Player() {
+    public Player() 
+    {
         this.password = "";
         this.name = "";
         this.currentScore = 0;
@@ -12,23 +13,28 @@ public class Player {
     }
 
     @Override
-    public String toString() {
+    public String toString() 
+    {
         return "Name : " + name
                 + "\nNice try. This is the only information you get from the toString function for a player.";
     }
 
-    public boolean isPasswordCorrect(String password) {
+    public boolean isPasswordCorrect(String password) 
+    {
         return password.equals(this.password);
 
     }
 
-    public void addToCurrentDeck(Card card, int i) {
+    public void addToCurrentDeck(Card card, int i) 
+    {
         (this.currentDeck)[i] = card;
         this.currentScore += card.retPoints();
     }
 
-    public void showCardsAndPoints() {
-        for (Card i : currentDeck) {
+    public void showCardsAndPoints() 
+    {
+        for (Card i : currentDeck) 
+        {
             System.out.print(i.toString() + " ");
         }
         System.out.println("Total points = " + currentScore);
