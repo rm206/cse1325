@@ -63,23 +63,23 @@ public class DetroitOhio
                     passwordToMatch = String.valueOf(console.readPassword());
                 }
             }
-            
-            System.out.println("1. See your cards and total score");
-            System.out.println("2. See your cards and swap one of your cards for a new card");
-            System.out.println("3. Don't take any action and continue");
-            System.out.println("4. Finalize deck (YOU WON'T BE ABLE TO SWAP YOUR CARDS AFTER THIS)");
+            System.out.println("Your cards :");
+            if(turn1Or2 == -1)
+            {
+                player1.showCardsAndPoints();
+            }
+            else
+            {
+                player2.showCardsAndPoints();
+            }
+            System.out.println("\n");
+            System.out.println("1. See your cards and swap one of your cards for a new card");
+            System.out.println("2. Don't take any action and continue");
+            System.out.println("3. Finalize deck (YOU WON'T BE ABLE TO SWAP YOUR CARDS AFTER THIS)");
             choice = sc.nextInt();
             switch(choice)
             {
                 case 1 :
-                        {
-                            if(turn1Or2 == -1)
-                                player1.showCardsAndPoints();
-                            else
-                                player2.showCardsAndPoints();
-                            break;
-                        }
-                case 2 :
                         {
                             if(turn1Or2 == -1)
                             {
@@ -91,11 +91,11 @@ public class DetroitOhio
                             }
                             break;
                         }
-                case 3 :
+                case 2 :
                         {
                             break;
                         }
-                case 4 :
+                case 3 :
                         {
                             if(turn1Or2 == -1)
                                 player1Ended = true;
@@ -110,6 +110,7 @@ public class DetroitOhio
             }
 
             turn1Or2 *= -1;
+            System.out.println("\n\n");
         }
 
         System.out.println("GAME ENDED");
