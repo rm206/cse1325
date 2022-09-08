@@ -1,7 +1,4 @@
 import java.util.Scanner;
-
-import javax.security.auth.callback.ChoiceCallback;
-
 import java.io.Console; 
 
 public class DetroitOhio 
@@ -11,59 +8,14 @@ public class DetroitOhio
         Deck deck = new Deck();
         Scanner sc = new Scanner(System.in);
         Console console = System.console(); 
-        String nameToPass;
-        // char[] passwordCharArray;
-        String passwordToPass = new String("");
-        String checkPasswordToPass = new String("");
-        System.out.println("Welcome Player 1");
-        System.out.print("Enter your name : ");
-        nameToPass = sc.nextLine();
-        while(nameToPass == "")
-        {
-            System.out.print("Your name cannot be empty. Please enter a name again : ");
-            nameToPass = sc.nextLine();
-        }
-        System.out.println("NOTE : You won't be able to see your password when you type it; like bash or ZShell");
-        System.out.print("Enter your password (you will need this to see your score and hand every time) : ");
-        passwordToPass = new String(console.readPassword());
-        while(passwordToPass == "")
-        {
-            System.out.print("Passwords are important! You can't not have a password. Please enter a password : ");
-            passwordToPass = sc.nextLine();
-        }
-        System.out.print("Confirm you password : ");
-        checkPasswordToPass = String.valueOf(console.readPassword());
-        while(!passwordToPass.equals(checkPasswordToPass))
-        {
-            System.out.print("The passwords do not match. Please re-confirm your password : ");
-            checkPasswordToPass = String.valueOf(console.readPassword());
-        }
-        Player player1 = new Player(nameToPass, passwordToPass);
 
+        Player player1 = new Player();
+        System.out.println("Welcome Player 1");
+        player1.setNameAndPassword();
+        
+        Player player2 = new Player();
         System.out.println("Welcome Player 2");
-        System.out.print("Enter your name : ");
-        nameToPass = sc.nextLine();
-        while(nameToPass == "")
-        {
-            System.out.print("Your name cannot be empty. Please enter a name again : ");
-            nameToPass = sc.nextLine();
-        }
-        System.out.println("NOTE : You won't be able to see your password when you type it; like bash or ZShell");
-        System.out.print("Enter your password (you will need this to see your score and hand every time) : ");
-        passwordToPass = String.valueOf(console.readPassword());
-        while(passwordToPass == "")
-        {
-            System.out.print("Passwords are important! You can't not have a password. Please enter a password : ");
-            passwordToPass = sc.nextLine();
-        }
-        System.out.print("Confirm you password : ");
-        checkPasswordToPass = String.valueOf(console.readPassword());
-        while(!passwordToPass.equals(checkPasswordToPass))
-        {
-            System.out.print("The passwords do not match. Please re-confirm your password : ");
-            checkPasswordToPass = String.valueOf(console.readPassword());
-        }
-        Player player2 = new Player(nameToPass, passwordToPass);
+        player2.setNameAndPassword();
 
         System.out.println("Dealing 4 cards to Player 1");
         for(int i = 0 ; i < 4 ; i++)
@@ -72,6 +24,13 @@ public class DetroitOhio
         for(int i = 0 ; i < 4 ; i++)
             player2.addToCurrentDeck(deck.deal(), i);
         
+        System.out.println("\n\nThe following cards have been dealt to the 2 players");
+        System.out.println("Player 1 : ");
+        player1.showCardsAndPoints();
+        System.out.println("\nPlayer 2 : ");
+        player2.showCardsAndPoints();        
+        System.out.println("\n");
+
         // Game loop
         boolean player1Ended = false;
         boolean player2Ended = false;
@@ -90,6 +49,8 @@ public class DetroitOhio
             }
             System.out.println("1. See your cards and total score");
             System.out.println("2. Swap one of your cards for a new card");
+            System.out.println("3. Don't take any action and continue");
+            System.out.println("4. Finalize deck");
             choice = sc.nextInt();
             switch(choice)
             {

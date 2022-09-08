@@ -10,6 +10,7 @@ A - 3
 0 - 9 : The face value. Example - 2 is points
 The total points value of a card is given by its rank_point_value * suit_point_value
 For example, 3U is worth 3*5 = 15 points
+The players are able to see each others' cards for the first time and then never again.
 After the players have seen their cards and current points, they have the option to swap
 one of their cards with the card on top of the deck. This action is irreversible and the deck
 is not unlimited.
