@@ -33,11 +33,13 @@ public class Player {
 
     public void showCardsAndPoints() 
     {
-        for (Card i : currentDeck) 
+        int i = 1;
+        for (Card c : this.currentDeck) 
         {
-            System.out.print(i.toString() + " ");
+            System.out.print(i + "." + c.toString() + " ");
+            i++;
         }
-        System.out.println("Total points = " + currentScore);
+        System.out.println("Total points = " + this.currentScore);
     }
 
     public void setNameAndPassword() 
@@ -72,6 +74,25 @@ public class Player {
 
         this.name = name;
         this.password = password;
+    }
+
+    public void swapCardAtIndex(Card card)
+    {
+        Scanner sc = new Scanner(System.in);
+        int cardToSwap;
+        System.out.println("Cards before swap");
+        this.showCardsAndPoints();
+        System.out.print("Enter the position you want to swap : ");
+        cardToSwap = sc.nextInt();
+        this.currentScore = this.currentScore - (this.currentDeck)[cardToSwap-1].retPoints() + card.retPoints();
+        (this.currentDeck)[cardToSwap - 1] = card;
+        System.out.println("Cards after swap");
+        this.showCardsAndPoints();
+    }
+
+    public int retPoints()
+    {
+        return this.currentScore;
     }
 
     private String name;

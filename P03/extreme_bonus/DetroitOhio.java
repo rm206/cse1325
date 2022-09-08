@@ -33,6 +33,7 @@ public class DetroitOhio
         boolean player1Ended = false;
         boolean player2Ended = false;
         int choice = 0;
+        int cardToSwap = 0;
         String passwordToMatch = new String("");
         int turn1Or2 = -1; // This variable is -1 when its the turn of Player 1 and 1 for Player 2
         while(!(player1Ended && player2Ended))
@@ -64,7 +65,7 @@ public class DetroitOhio
             }
             
             System.out.println("1. See your cards and total score");
-            System.out.println("2. Swap one of your cards for a new card");
+            System.out.println("2. See your cards and swap one of your cards for a new card");
             System.out.println("3. Don't take any action and continue");
             System.out.println("4. Finalize deck (YOU WON'T BE ABLE TO SWAP YOUR CARDS AFTER THIS)");
             choice = sc.nextInt();
@@ -76,12 +77,45 @@ public class DetroitOhio
                                 player1.showCardsAndPoints();
                             else
                                 player2.showCardsAndPoints();
+                            break;
                         }
                 case 2 :
                         {
                             if(turn1Or2 == -1)
+                            {
+                                player1.swapCardAtIndex(deck.deal());
+                            }
+                            else
+                            {
+                                player2.swapCardAtIndex(deck.deal());
+                            }
+                            break;
+                        }
+                case 3 :
+                        {
+                            break;
+                        }
+                case 4 :
+                        {
+                            if(turn1Or2 == -1)
+                                player1Ended = true;
+                            else
+                                player2Ended = true;
+                            break;
+                        }
+                default :
+                        {
+                            System.out.println("Incorrect choice. YOUR TURN IS SKIPPED");
                         }
             }
+
+            turn1Or2 *= -1;
         }
+
+        System.out.println("GAME ENDED");
+        if(player1.retPoints() > player2.retPoints())
+            System.out.println("PLAYER 1 WON!");
+        else
+            System.out.println("PLAYER 2 WON!");
     }
 }
