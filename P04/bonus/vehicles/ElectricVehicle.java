@@ -27,7 +27,7 @@ public class ElectricVehicle extends Vehicle
      * @param model           the model of the vehicle
      * @param bodyStyle       bodyStyle of the vehicle
      * @param whPerMile       amount of energy in wH to travel one mile
-     * @param kwhInBattery    battery capacity of electric vehicle in kwH
+     * @param kwhInBattery    energy in electric vehicle in kwH
      * @since              1.0
      */
     public ElectricVehicle(int year, String make, String model, BodyStyle bodyStyle, double whPerMile, double kwhInBattery)
@@ -38,7 +38,7 @@ public class ElectricVehicle extends Vehicle
     }
 
     /**
-     * Overriden range function to return the range of the electric vdehicle in miles
+     * Overriden range function to return the range of the electric vehicle in miles
      */
     @Override
     public double range()
