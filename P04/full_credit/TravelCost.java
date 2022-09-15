@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.text.StyledEditorKit;
-
 public class TravelCost 
 {
     public static void main(String[] args) 
@@ -42,7 +40,8 @@ public class TravelCost
         for(Vehicle vehicle : vehicles)
         {
             // System.out.println(vehicle.dollarsToTravel(miles) + " Range : " + vehicle.range() + " " + vehicle.toString());
-            System.out.printf("%.1f Range : %.1f %s\n", vehicle.dollarsToTravel(miles), vehicle.range() ,vehicle.toString());
+            // System.out.printf("%5.1f  | Range : %5.1f | %s\n", vehicle.dollarsToTravel(miles), vehicle.range() ,vehicle.toString());
+            System.out.println(vehicle.dollarsToTravel(miles));
         }
 
     }

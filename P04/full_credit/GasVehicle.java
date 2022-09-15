@@ -28,7 +28,7 @@ public class GasVehicle extends Vehicle
     @Override
     public double dollarsToTravel(double miles)
     {
-        return fuelConsumed(miles) * this.dollarsPerGallonsOfGas;
+        return fuelConsumed(miles) * dollarsPerGallonsOfGas;
     }
 
     private double milesPerGallon;
