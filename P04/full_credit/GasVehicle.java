@@ -1,13 +1,12 @@
 public class GasVehicle extends Vehicle
 {
-    public static double dollarsPerGallonsOfGas;
+    public static double dollarsPerGallonsOfGas= Double.NaN;
 
     public GasVehicle(int year, String make, String model, BodyStyle bodyStyle, double milesPerGallon, double gallonsInTank)
     {
         super(year, make, model, bodyStyle);
         this.milesPerGallon = milesPerGallon;
         this.gallonsInTank = gallonsInTank;
-        this.dollarsPerGallonsOfGas = Double.NaN;
     }
 
     @Override

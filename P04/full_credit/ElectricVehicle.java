@@ -1,13 +1,12 @@
 public class ElectricVehicle extends Vehicle
 {
-    public static double centsPerKwhOfElectricity;
+    public static double centsPerKwhOfElectricity = Double.NaN;
 
     public ElectricVehicle(int year, String make, String model, BodyStyle bodyStyle, double whPerMile, double kwhInBattery)
     {
         super(year, make, model, bodyStyle);
         this.whPerMile = whPerMile;
         this.kwhInBattery = kwhInBattery;
-        this.centsPerKwhOfElectricity = Double.NaN;
     }
 
     @Override

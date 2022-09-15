@@ -17,7 +17,7 @@ public abstract class Vehicle
     @Override
     public String toString()
     {
-        return "" + this.year + this.make + this.model + this.bodyStyle;
+        return "" + this.year + " " + this.make + " " + this.model + " " + this.bodyStyle;
     }
     
     private int year;
