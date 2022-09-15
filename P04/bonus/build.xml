@@ -9,6 +9,20 @@
       <src path="."/>
     </javac>
   </target>
+
+  <javadoc packagenames="vehicles.*"
+           sourcepath="."
+           excludepackagenames="com.dummy.test.doc-files.*"
+           defaultexcludes="yes"
+           destdir="docs/api"
+           author="true"
+           version="true"
+           use="true"
+           windowtitle="Vehicle">
+    <doctitle><![CDATA[<h1>Vehicle</h1>]]></doctitle>
+    <bottom><![CDATA[<i>Copyright &#169; 2022 Rishabh Mediratta.</i>]]></bottom>
+    <tag name="license.agreement" scope="all" description="Licensed under:"/>
+  </javadoc>
   
   <target name="clean" description="Clean output files">
     <delete>
