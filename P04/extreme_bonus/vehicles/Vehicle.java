@@ -1,7 +1,7 @@
 package vehicles;
 
 /*
- * Vehicle is the base abstract class for all types of Vehicle classes
+ * Vehicle is the interface for all types of Vehicle classes
  * @author             Rishabh Mediratta
  * @version            1.0
  * @since              1.0
@@ -10,26 +10,13 @@ package vehicles;
 
 public interface Vehicle 
 {
-    // /**
-    //  * Creates a Vehicle instance.
-    //  *
-    //  * <p>See {@link BodyStyle} for valid bodyStyles
-    //  * 
-    //  * @param year            the year of manufacturing
-    //  * @param make            the make of the vehicle
-    //  * @param model           the model of the vehicle
-    //  * @param bodyStyle       bodyStyle of the vehicle
-    //  * @since              1.0
-    //  */
-    // public abstract Vehicle(int year, String make, String model, BodyStyle bodyStyle);
-
     /**
-     * Abstract method to return the range of the vehicle when implemented in subclass
+     * Abstract method to return the range of the vehicle
      */
     public abstract double range();
 
     /**
-     * Abstract method to return the fuel consumed to travel given miles when implemented in subclass
+     * Abstract method to return the fuel consumed to travel given miles
      * 
      * @param miles             the miles to be covered
      * @since              1.0
@@ -37,7 +24,7 @@ public interface Vehicle
     public abstract double fuelConsumed(double miles);
 
     /**
-     * Abstract method to return the dollars requried to travel given miles when implemented in subclass
+     * Abstract method to return the dollars requried to travel given miles
      * 
      * @param miles             the miles to be covered
      * @since              1.0
