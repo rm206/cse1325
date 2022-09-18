@@ -38,7 +38,7 @@ public class TravelCost
         System.out.println("--------------------------------------------------------------------");
         for(Vehicle vehicle : vehicles)
         {
-            System.out.printf("| %5.2f | Range : %5.2f | %-40s|\n", vehicle.dollarsToTravel(miles), vehicle.range() ,vehicle.toString());
+            System.out.printf("| $ %5.2f | Range : %5.2f | %-40s|\n", vehicle.dollarsToTravel(miles), vehicle.range() ,vehicle.toString());
             System.out.println(" ------------------------------------------------------------------");
         }
 
