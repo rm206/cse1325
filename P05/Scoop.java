@@ -7,7 +7,7 @@ public class Scoop {
     }
     
     public void addMixIn(MixIn mixin) {
-        if(mixins.isEmpty()) {
+        if(mixins == null) {
             mixins = new ArrayList<>();
         }
         mixins.add(mixin);
@@ -15,7 +15,7 @@ public class Scoop {
 
     @Override
     public String toString() {
-        if (!mixins.isEmpty()) {
+        if (mixins != null) {
             String toReturn = flavor + " with ";
             for (MixIn m : mixins) {
                 toReturn += "" + m + " ";
@@ -23,7 +23,8 @@ public class Scoop {
             return toReturn;
         }
 
-        return "" + flavor;
+        else
+            return "" + flavor;
     }
     
     private IceCreamFlavor flavor;
