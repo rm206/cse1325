@@ -285,24 +285,28 @@ public class MainWin extends JFrame {
     }
 
     private void view(Screen screen) {
-        // String to_display_string = new String("");
-        String to_display_string2 = new String("");
-        if (screen == Screen.ICE_CREAM_FLAVORS)
-            // to_display_string = "";
-            to_display_string2 = "";
-            // to_display_string += "<HTML><h1>ICE CREAM FLAVORS</h1><br/></HTML>";
+        String to_display_string_1 = new String("");
+        String to_display_string_2 = new String("");
+        if (screen == Screen.ICE_CREAM_FLAVORS) {
+            to_display_string_1 = "";
+            to_display_string_2 = "";
+            to_display_string_1 += "<HTML><h1>ICE CREAM FLAVORS</h1><br/>";
             for (int i = 0 ; i < emporium.iceCreamFlavors().length ; i++) {
-                to_display_string2 += String.format("%s\n", (emporium.iceCreamFlavors()[i]).toString());
+                to_display_string_2 += String.format("<h2>%s</h2>", (emporium.iceCreamFlavors()[i]).toString());
             }
-            display.setText(to_display_string2);
-            System.out.println(to_display_string2);
-            // display.setText((emporium.iceCreamFlavors()[0]).toString());
-        // if (screen == Screen.MIX_IN_FLAVORS)
-        //     to_display_string = "";
-        //     to_display_string += "<HTML><h1>MIX IN FLAVORS</h1></HTML>\n";  
-        //     for (Object i : emporium.mixInFlavors())
-        //         to_display_string += i.toString()+"\n";  
-        //     display.setText("mixin");
+            to_display_string_2 += "</HTML>";
+            display.setText(to_display_string_1 + to_display_string_2);
+        }
+        if (screen == Screen.MIX_IN_FLAVORS) {
+            to_display_string_1 = "";
+            to_display_string_2 = "";
+            to_display_string_1 += "<HTML><h1>MIXIN FLAVORS</h1><br/>";
+            for (int i = 0 ; i < emporium.mixInFlavors().length ; i++) {
+                to_display_string_2 += String.format("<h2>%s</h2>", (emporium.mixInFlavors()[i]).toString());
+            }
+            to_display_string_2 += "</HTML>";
+            display.setText(to_display_string_1 + to_display_string_2);
+        }
         // if (screen == Screen.SCOOPS)
         //     display.setText("Scoops");
     }
