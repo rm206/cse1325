@@ -292,9 +292,10 @@ public class MainWin extends JFrame {
             to_display_string2 = "";
             // to_display_string += "<HTML><h1>ICE CREAM FLAVORS</h1><br/></HTML>";
             for (int i = 0 ; i < emporium.iceCreamFlavors().length ; i++) {
-                to_display_string2 += String.format("<HTML>%s<br/></HTML>", (emporium.iceCreamFlavors()[i]).toString());
+                to_display_string2 += String.format("%s\n", (emporium.iceCreamFlavors()[i]).toString());
             }
             display.setText(to_display_string2);
+            System.out.println(to_display_string2);
             // display.setText((emporium.iceCreamFlavors()[0]).toString());
         // if (screen == Screen.MIX_IN_FLAVORS)
         //     to_display_string = "";
