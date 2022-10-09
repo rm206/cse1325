@@ -12,6 +12,7 @@ import java.awt.Frame;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -284,15 +285,25 @@ public class MainWin extends JFrame {
     }
 
     private void view(Screen screen) {
-        String to_display_string = new String("");
+        // String to_display_string = new String("");
+        String to_display_string2 = new String("");
         if (screen == Screen.ICE_CREAM_FLAVORS)
-            for (Object i : emporium.iceCreamFlavors())
-                to_display_string += i.toString()+"\n";
-            display.setText("<HTML><h1>ICE CREAM FLAVORS</h1></HTML>\n" + to_display_string);
-        if (screen == Screen.MIX_IN_FLAVORS)
-            display.setText("mxiin");
-        if (screen == Screen.SCOOPS)
-            display.setText("Scoops");
+            // to_display_string = "";
+            to_display_string2 = "";
+            // to_display_string += "<HTML><h1>ICE CREAM FLAVORS</h1><br/></HTML>";
+            for (int i = 0 ; i < emporium.iceCreamFlavors().length ; i++) {
+                to_display_string2 += String.format("<HTML>%s<br/></HTML>", (emporium.iceCreamFlavors()[i]).toString());
+            }
+            display.setText(to_display_string2);
+            // display.setText((emporium.iceCreamFlavors()[0]).toString());
+        // if (screen == Screen.MIX_IN_FLAVORS)
+        //     to_display_string = "";
+        //     to_display_string += "<HTML><h1>MIX IN FLAVORS</h1></HTML>\n";  
+        //     for (Object i : emporium.mixInFlavors())
+        //         to_display_string += i.toString()+"\n";  
+        //     display.setText("mixin");
+        // if (screen == Screen.SCOOPS)
+        //     display.setText("Scoops");
     }
 
     private enum Screen {
@@ -306,115 +317,3 @@ public class MainWin extends JFrame {
     private Emporium emporium = new Emporium();
 
 }
-
-// // ///////////// //////////////////////////////////////////////////////////
-// // T O O L B A R
-// // Add a toolbar to the PAGE_START region below the menu
-// JToolBar toolbar = new JToolBar("Nim Controls");
-
-// // Add a New Game stock icon
-// JButton anewB = new JButton(UIManager.getIcon("FileView.fileIcon"));
-// anewB.setActionCommand("New Game");
-// anewB.setToolTipText("Create a new game, discarding any in progress");
-// anewB.setBorder(null);
-// toolbar.add(anewB);
-// anewB.addActionListener(event -> onNewGameClick());
-
-// // A "horizontal strut" is just a space of the specified pixel width
-// toolbar.add(Box.createHorizontalStrut(25));
-
-// // Create the 3 buttons using the icons provided
-// button1 = new JButton(new ImageIcon("button1.png"));
-// button1.setActionCommand("Select one stick");
-// button1.setToolTipText("Select one stick");
-// toolbar.add(button1);
-// button1.addActionListener(event -> onButtonClick(1));
-
-// button2 = new JButton(new ImageIcon("button2.png"));
-// button2.setActionCommand("Select two sticks");
-// button2.setToolTipText("Select two sticks");
-// toolbar.add(button2);
-// button2.addActionListener(event -> onButtonClick(2));
-
-// button3 = new JButton(new ImageIcon("button3.png"));
-// button3.setActionCommand("Select three sticks");
-// button3.setToolTipText("Select three sticks");
-// toolbar.add(button3);
-// button3.addActionListener(event -> onButtonClick(3));
-
-// toolbar.add(Box.createHorizontalStrut(25));
-
-// // Create a toggle button to enable or disable the computer player
-// computerPlayer = new JToggleButton(new ImageIcon("freepik_robot.png"));
-// computerPlayer.setActionCommand("Enable computer player");
-// computerPlayer.setToolTipText("Enable for computer to be Player 2");
-// computerPlayer.setBorder(null);
-// toolbar.add(computerPlayer);
-// computerPlayer.addActionListener(event -> onComputerPlayerClick());
-
-// // "Horizontal glue" expands as much as possible, pushing the "X" to the
-// right
-// toolbar.add(Box.createHorizontalGlue());
-
-// // Create a custom Quit button (not available in Swing stock icons)
-// JButton quitB = new JButton("X");
-// quitB.setActionCommand("Quit");
-// quitB.setToolTipText("Exit game");
-// quitB.setBorder(null);
-// toolbar.add(quitB);
-// quitB.addActionListener(event -> onQuitClick());
-// toolbar.addSeparator();
-
-// getContentPane().add(toolbar, BorderLayout.PAGE_START);
-
-// // /////////////////////////// ////////////////////////////////////////////
-// // S T I C K S D I S P L A Y
-// // Provide a text entry box to show the remaining sticks
-// sticks = new JLabel();
-// sticks.setFont(new Font("SansSerif", Font.BOLD, 18));
-// add(sticks, BorderLayout.CENTER);
-
-// // S T A T U S B A R D I S P L A Y ////////////////////////////////////
-// // Provide a status bar for game messages
-// msg = new JLabel();
-// add(msg, BorderLayout.PAGE_END);
-
-// protected void onAboutClick() { // Display About dialog
-// JDialog about = new JDialog();
-// about.setLayout(new FlowLayout());
-// about.setTitle("The Game of Nim");
-
-// try {
-// BufferedImage myPicture = ImageIO.read(new
-// File("128px-Pyramidal_matches.png"));
-// JLabel logo = new JLabel(new ImageIcon(myPicture));
-// about.add(logo);
-// } catch (IOException e) {
-// }
-
-// JLabel title = new JLabel("<html>"
-// + "<p><font size=+4>Nim</font></p>"
-// + "</html>");
-// about.add(title);
-
-// JLabel artists = new JLabel("<html>"
-// + "<p>Version 1.3J</p>"
-// + "<p>Copyright 2017-2020 by George F. Rice</p>"
-// + "<p>Licensed under Gnu GPL 3.0</p>"
-// + "<p>Logo by M0tty, licensed under CC BY-SA 3.0</p>"
-// + "<p><font
-// size=-2>https://commons.wikimedia.org/wiki/File:Pyramidal_matches.svg</font></p>"
-// + "<p>Robot by FreePik.com, licensed for personal</p><p>and commercial
-// purposes with attribution</p>"
-// + "<p><font
-// size=-2>https://www.freepik.com/free-vector/grey-robot-silhouettes_714902.htm</font></p>"
-// + "</html>");
-// about.add(artists);
-
-// JButton ok = new JButton("OK");
-// ok.addActionListener(event -> about.setVisible(false));
-// about.add(ok);
-
-// about.setSize(450, 400);
-// about.setVisible(true);
-// }
