@@ -287,6 +287,7 @@ public class MainWin extends JFrame {
     private void view(Screen screen) {
         String to_display_string_1 = new String("");
         String to_display_string_2 = new String("");
+
         if (screen == Screen.ICE_CREAM_FLAVORS) {
             to_display_string_1 = "";
             to_display_string_2 = "";
@@ -307,8 +308,17 @@ public class MainWin extends JFrame {
             to_display_string_2 += "</HTML>";
             display.setText(to_display_string_1 + to_display_string_2);
         }
-        // if (screen == Screen.SCOOPS)
-        //     display.setText("Scoops");
+
+        if (screen == Screen.SCOOPS) {
+            to_display_string_1 = "";
+            to_display_string_2 = "";
+            to_display_string_1 += "<HTML><h1>MIXIN FLAVORS</h1><br/>";
+            for (int i = 0 ; i < emporium.scoops().length ; i++) {
+                to_display_string_2 += String.format("<h2>%s</h2>", (emporium.scoops()[i]).toString());
+            }
+            to_display_string_2 += "</HTML>";
+            display.setText(to_display_string_1 + to_display_string_2);
+        }
     }
 
     private enum Screen {
