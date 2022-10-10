@@ -45,6 +45,8 @@ public class MainWin extends JFrame {
         JMenuItem createMixInFlavor = new JMenuItem("Mixin Flavor");
         JMenuItem createScoop = new JMenuItem("Scoop");
 
+        // JMenu about = new JMenu("About");
+
         quit.addActionListener(event -> onQuitClick());
 
         viewIceCreamFlavor.addActionListener(event -> view(Screen.ICE_CREAM_FLAVORS));
@@ -294,36 +296,42 @@ public class MainWin extends JFrame {
                 null,
                 emporium.iceCreamFlavors(),
                 null);
-        if(iceCreamFlavorForScoop != null) {
+        if (iceCreamFlavorForScoop != null) {
             scoopToAdd = new Scoop(iceCreamFlavorForScoop);
         }
-        
-        product.MixInFlavor mixInFlavorForScoop = null;
-        do {
-        mixInFlavorForScoop = (product.MixInFlavor) JOptionPane.showInputDialog(
-            this,
-            "Pick Mix In flavor",
-            "New Scoop",
-            JOptionPane.QUESTION_MESSAGE,
-            null,
-            emporium.mixInFlavors(),
-            null);
-        if(mixInFlavorForScoop != null) {
-            product.MixInAmount mixInAmountForScoop = (product.MixInAmount) JOptionPane.showInputDialog(
-                this,
-                "Pick Mix In Amount",
-                "New Scoop",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                product.MixInAmount.values(),
-                null);
-            
-            product.MixIn mixInForScoop = new product.MixIn(mixInFlavorForScoop, mixInAmountForScoop);
-            scoopToAdd.addMixIn(mixInForScoop);
-        }
-    } while(mixInFlavorForScoop != null);
+        if (iceCreamFlavorForScoop != null) 
+        {
+            product.MixInFlavor mixInFlavorForScoop = null;
+            do 
+            {
+                    mixInFlavorForScoop = (product.MixInFlavor) JOptionPane.showInputDialog(
+                            this,
+                            "Pick Mix In flavor",
+                            "New Scoop",
+                            JOptionPane.QUESTION_MESSAGE,
+                            null,
+                            emporium.mixInFlavors(),
+                            null);
+                    if (mixInFlavorForScoop != null) 
+                    {
+                        product.MixInAmount mixInAmountForScoop = (product.MixInAmount) JOptionPane.showInputDialog(
+                                this,
+                                "Pick Mix In Amount",
+                                "New Scoop",
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                product.MixInAmount.values(),
+                                null);
 
-        emporium.addScoop(scoopToAdd); 
+                        product.MixIn mixInForScoop = new product.MixIn(mixInFlavorForScoop, mixInAmountForScoop);
+                        scoopToAdd.addMixIn(mixInForScoop);
+                    }
+                
+            } while (mixInFlavorForScoop != null);
+
+            if(scoopToAdd != null)
+                emporium.addScoop(scoopToAdd);
+        }
         view(Screen.SCOOPS);
     }
 
