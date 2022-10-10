@@ -4,6 +4,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JMenuBar;
 import javax.swing.JLabel;
@@ -14,9 +15,13 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import emporium.Emporium;
+import product.IceCreamFlavor;
+import product.MixInFlavor;
+import product.Scoop;
 
 public class MainWin extends JFrame {
 
@@ -281,7 +286,45 @@ public class MainWin extends JFrame {
     }
 
     public void onCreateScoopClick() {
+        product.Scoop scoopToAdd = new product.Scoop(null);
+        product.IceCreamFlavor iceCreamFlavorForScoop = (product.IceCreamFlavor) JOptionPane.showInputDialog(
+                this,
+                "Pick Ice Cream flavor",
+                "New Scoop",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                emporium.iceCreamFlavors(),
+                null);
+        if(iceCreamFlavorForScoop != null) {
+            scoopToAdd = new Scoop(iceCreamFlavorForScoop);
+        }
+        
+        product.MixInFlavor mixInFlavorForScoop = null;
+        do {
+        mixInFlavorForScoop = (product.MixInFlavor) JOptionPane.showInputDialog(
+            this,
+            "Pick Mix In flavor",
+            "New Scoop",
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            emporium.mixInFlavors(),
+            null);
+        if(mixInFlavorForScoop != null) {
+            product.MixInAmount mixInAmountForScoop = (product.MixInAmount) JOptionPane.showInputDialog(
+                this,
+                "Pick Mix In Amount",
+                "New Scoop",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                product.MixInAmount.values(),
+                null);
+            
+            product.MixIn mixInForScoop = new product.MixIn(mixInFlavorForScoop, mixInAmountForScoop);
+            scoopToAdd.addMixIn(mixInForScoop);
+        }
+    } while(mixInFlavorForScoop != null);
 
+        emporium.addScoop(scoopToAdd); 
     }
 
     private void view(Screen screen) {
@@ -292,9 +335,10 @@ public class MainWin extends JFrame {
             to_display_string_1 = "";
             to_display_string_2 = "";
             to_display_string_1 += "<HTML><h1>ICE CREAM FLAVORS</h1><br/>";
-            for (int i = 0 ; i < emporium.iceCreamFlavors().length ; i++) {
-                to_display_string_2 += String.format("<h2>%s</h2>", (emporium.iceCreamFlavors()[i]).toString());
-            }
+            if (emporium.iceCreamFlavors() != null)
+                for (int i = 0; i < emporium.iceCreamFlavors().length; i++) {
+                    to_display_string_2 += String.format("<h2>%s</h2>", (emporium.iceCreamFlavors()[i]).toString());
+                }
             to_display_string_2 += "</HTML>";
             display.setText(to_display_string_1 + to_display_string_2);
         }
@@ -302,9 +346,10 @@ public class MainWin extends JFrame {
             to_display_string_1 = "";
             to_display_string_2 = "";
             to_display_string_1 += "<HTML><h1>MIXIN FLAVORS</h1><br/>";
-            for (int i = 0 ; i < emporium.mixInFlavors().length ; i++) {
-                to_display_string_2 += String.format("<h2>%s</h2>", (emporium.mixInFlavors()[i]).toString());
-            }
+            if (emporium.mixInFlavors() != null)
+                for (int i = 0; i < emporium.mixInFlavors().length; i++) {
+                    to_display_string_2 += String.format("<h2>%s</h2>", (emporium.mixInFlavors()[i]).toString());
+                }
             to_display_string_2 += "</HTML>";
             display.setText(to_display_string_1 + to_display_string_2);
         }
@@ -312,10 +357,11 @@ public class MainWin extends JFrame {
         if (screen == Screen.SCOOPS) {
             to_display_string_1 = "";
             to_display_string_2 = "";
-            to_display_string_1 += "<HTML><h1>MIXIN FLAVORS</h1><br/>";
-            for (int i = 0 ; i < emporium.scoops().length ; i++) {
-                to_display_string_2 += String.format("<h2>%s</h2>", (emporium.scoops()[i]).toString());
-            }
+            to_display_string_1 += "<HTML><h1>SCOOPS</h1><br/>";
+            if (emporium.scoops() != null)
+                for (int i = 0; i < emporium.scoops().length; i++) {
+                    to_display_string_2 += String.format("<h2>%s</h2>", (emporium.scoops()[i]).toString());
+                }
             to_display_string_2 += "</HTML>";
             display.setText(to_display_string_1 + to_display_string_2);
         }

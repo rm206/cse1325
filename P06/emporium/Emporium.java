@@ -27,14 +27,20 @@ public class Emporium {
     }   
 
     public Object[] mixInFlavors() {
+        if (mixInFlavors == null)
+            return null;
         return mixInFlavors.toArray();
     }
 
     public Object[] iceCreamFlavors() {
+        if (iceCreamFlavors == null)
+            return null;
         return iceCreamFlavors.toArray();
     }
 
     public Object[] scoops() {
+        if (scoops == null)
+            return null;
         return scoops.toArray();
     }
     
