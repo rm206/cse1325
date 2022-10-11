@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import emporium.Emporium;
+
 import product.IceCreamFlavor;
 import product.MixInFlavor;
 import product.Scoop;
@@ -45,7 +46,8 @@ public class MainWin extends JFrame {
         JMenuItem createMixInFlavor = new JMenuItem("Mixin Flavor");
         JMenuItem createScoop = new JMenuItem("Scoop");
 
-        // JMenu about = new JMenu("About");
+        JMenu help = new JMenu("Help");
+        JMenuItem about = new JMenuItem("About");
 
         quit.addActionListener(event -> onQuitClick());
 
@@ -57,6 +59,8 @@ public class MainWin extends JFrame {
         createMixInFlavor.addActionListener(event -> onCreateMixInFlavorClick());
         createScoop.addActionListener(event -> onCreateScoopClick());
 
+        about.addActionListener(event -> onAboutClick());
+
         file.add(quit);
 
         view.add(viewIceCreamFlavor);
@@ -67,9 +71,12 @@ public class MainWin extends JFrame {
         create.add(createMixInFlavor);
         create.add(createScoop);
 
+        help.add(about);
+
         menubar.add(file);
         menubar.add(view);
         menubar.add(create);
+        menubar.add(help);
 
         setJMenuBar(menubar);
 
@@ -299,40 +306,45 @@ public class MainWin extends JFrame {
         if (iceCreamFlavorForScoop != null) {
             scoopToAdd = new Scoop(iceCreamFlavorForScoop);
         }
-        if (iceCreamFlavorForScoop != null) 
-        {
+        if (iceCreamFlavorForScoop != null) {
             product.MixInFlavor mixInFlavorForScoop = null;
-            do 
-            {
-                    mixInFlavorForScoop = (product.MixInFlavor) JOptionPane.showInputDialog(
+            do {
+                mixInFlavorForScoop = (product.MixInFlavor) JOptionPane.showInputDialog(
+                        this,
+                        "Pick Mix In flavor",
+                        "New Scoop",
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        emporium.mixInFlavors(),
+                        null);
+                if (mixInFlavorForScoop != null) {
+                    product.MixInAmount mixInAmountForScoop = (product.MixInAmount) JOptionPane.showInputDialog(
                             this,
-                            "Pick Mix In flavor",
+                            "Pick Mix In Amount",
                             "New Scoop",
                             JOptionPane.QUESTION_MESSAGE,
                             null,
-                            emporium.mixInFlavors(),
+                            product.MixInAmount.values(),
                             null);
-                    if (mixInFlavorForScoop != null) 
-                    {
-                        product.MixInAmount mixInAmountForScoop = (product.MixInAmount) JOptionPane.showInputDialog(
-                                this,
-                                "Pick Mix In Amount",
-                                "New Scoop",
-                                JOptionPane.QUESTION_MESSAGE,
-                                null,
-                                product.MixInAmount.values(),
-                                null);
 
-                        product.MixIn mixInForScoop = new product.MixIn(mixInFlavorForScoop, mixInAmountForScoop);
-                        scoopToAdd.addMixIn(mixInForScoop);
-                    }
-                
+                    product.MixIn mixInForScoop = new product.MixIn(mixInFlavorForScoop, mixInAmountForScoop);
+                    scoopToAdd.addMixIn(mixInForScoop);
+                }
+
             } while (mixInFlavorForScoop != null);
 
-            if(scoopToAdd != null)
+            if (scoopToAdd != null)
                 emporium.addScoop(scoopToAdd);
         }
         view(Screen.SCOOPS);
+    }
+
+    public void onAboutClick() {
+        String onAboutString = "<HTML>" +
+        "<h1><p style=\"text-align:center\">MAVS Ice Cream Emporium</p><h1>"+
+        "<h3><p style=\"text-align:center\">Copyright 2022 by Rishabh Mediratta<p></h3>"+
+        "</HTML>";
+        JOptionPane.showMessageDialog(this, onAboutString, "About MICE", JOptionPane.PLAIN_MESSAGE, null);
     }
 
     private void view(Screen screen) {
