@@ -99,7 +99,7 @@ public class MainWin extends JFrame {
         } catch (IOException i) {
             ;
         } finally {
-            JButton saveButton = new JButton();
+            saveButton = new JButton();
             saveButton.setActionCommand("Save File");
             saveButton.setToolTipText("Save File");
             saveButton.setIcon(new ImageIcon(saveButtonIcon));
@@ -131,7 +131,7 @@ public class MainWin extends JFrame {
         } catch (IOException i) {
             ;
         } finally {
-            JButton saveAsButton = new JButton();
+            saveAsButton = new JButton();
             saveAsButton.setActionCommand("Save File As");
             saveAsButton.setToolTipText("Save File As");
             saveAsButton.setIcon(new ImageIcon(saveAsButtonIcon));
@@ -151,7 +151,7 @@ public class MainWin extends JFrame {
         } catch (IOException i) {
             ;
         } finally {
-            JButton openButton = new JButton();
+            openButton = new JButton();
             openButton.setActionCommand("Open File");
             openButton.setToolTipText("Open File");
             openButton.setIcon(new ImageIcon(openButtonIcon));
@@ -172,7 +172,7 @@ public class MainWin extends JFrame {
         } catch (IOException i) {
             ;
         } finally {
-            JButton createIceCreamFlavorButton = new JButton();
+            createIceCreamFlavorButton = new JButton();
             createIceCreamFlavorButton.setActionCommand("Create Ice Cream Flavor");
             createIceCreamFlavorButton.setToolTipText("Create Ice Cream Flavor");
             createIceCreamFlavorButton.setIcon(new ImageIcon(createIceCreamFlavorButtonIcon));
@@ -193,7 +193,7 @@ public class MainWin extends JFrame {
         } catch (IOException i) {
             ;
         } finally {
-            JButton createMixInFlavorButton = new JButton();
+            createMixInFlavorButton = new JButton();
             createMixInFlavorButton.setActionCommand("Create MixIn Flavor");
             createMixInFlavorButton.setToolTipText("Create MixIn Flavor");
             createMixInFlavorButton.setIcon(new ImageIcon(createMixInFlavorButtonIcon));
@@ -214,13 +214,14 @@ public class MainWin extends JFrame {
         } catch (IOException i) {
             ;
         } finally {
-            JButton createScoopButton = new JButton();
+            createScoopButton = new JButton();
             createScoopButton.setActionCommand("Create Scoop");
             createScoopButton.setToolTipText("Create Scoop");
             createScoopButton.setIcon(new ImageIcon(createScoopButtonIcon));
             createScoopButton.setBorder(null);
             createScoopButton.setPreferredSize(new Dimension(32, 32));
             createScoopButton.addActionListener(event -> onCreateScoopClick());
+            createScoopButton.setEnabled(false);
             toolbar.add(createScoopButton);
         }
         toolbar.add(Box.createHorizontalStrut(25));
@@ -235,7 +236,7 @@ public class MainWin extends JFrame {
         } catch (IOException i) {
             ;
         } finally {
-            JButton viewIceCreamFlavorsButton = new JButton();
+            viewIceCreamFlavorsButton = new JButton();
             viewIceCreamFlavorsButton.setActionCommand("View Ice Cream Flavors");
             viewIceCreamFlavorsButton.setToolTipText("View Ice Cream Flavors");
             viewIceCreamFlavorsButton.setIcon(new ImageIcon(viewIceCreamFlavorsButtonIcon));
@@ -249,7 +250,6 @@ public class MainWin extends JFrame {
 
         // <a href="https://www.flaticon.com/free-icons/topping" title="topping
         // icons">Topping icons created by Freepik - Flaticon</a>
-        // view mix in flavors
         Image viewMixInFlavorsButtonIcon = null;
         try {
             viewMixInFlavorsButtonIcon = ImageIO
@@ -257,7 +257,7 @@ public class MainWin extends JFrame {
         } catch (IOException i) {
             ;
         } finally {
-            JButton viewMixInFlavorsButton = new JButton();
+            viewMixInFlavorsButton = new JButton();
             viewMixInFlavorsButton.setActionCommand("View MixInFlavors");
             viewMixInFlavorsButton.setToolTipText("View MixIn Flavors");
             viewMixInFlavorsButton.setIcon(new ImageIcon(viewMixInFlavorsButtonIcon));
@@ -272,7 +272,6 @@ public class MainWin extends JFrame {
         // <a href="https://www.flaticon.com/free-icons/food-and-restaurant" title="food
         // and restaurant icons">Food and restaurant icons created by Freepik -
         // Flaticon</a>
-        // view scoops
         Image viewScoopsButtonIcon = null;
         try {
             viewScoopsButtonIcon = ImageIO
@@ -280,7 +279,7 @@ public class MainWin extends JFrame {
         } catch (IOException i) {
             ;
         } finally {
-            JButton viewScoopsButton = new JButton();
+            viewScoopsButton = new JButton();
             viewScoopsButton.setActionCommand("View Scoops");
             viewScoopsButton.setToolTipText("View Scoops");
             viewScoopsButton.setIcon(new ImageIcon(viewScoopsButtonIcon));
@@ -402,6 +401,7 @@ public class MainWin extends JFrame {
                             new product.IceCreamFlavor(nameOfFlavor.getText(), descriptionOfFlavor.getText(),
                                     Integer.valueOf(priceOfFlavor.getText()),
                                     Integer.valueOf(costOfFlavor.getText())));
+                            createScoopButton.setEnabled(emporium.iceCreamFlavors() != null);
                 }
                 view(Screen.ICE_CREAM_FLAVORS);
             }
@@ -635,7 +635,13 @@ public class MainWin extends JFrame {
 
     private Emporium emporium = new Emporium();
 
-    JButton saveButton;
-    // JButton saveAsButton;
-
+    private JButton saveButton;
+    private JButton saveAsButton;
+    private JButton openButton;
+    private JButton createIceCreamFlavorButton;
+    private JButton createMixInFlavorButton;
+    private JButton createScoopButton;
+    private JButton viewIceCreamFlavorsButton;
+    private JButton viewMixInFlavorsButton;
+    private JButton viewScoopsButton;
 }
