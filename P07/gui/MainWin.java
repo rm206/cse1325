@@ -91,96 +91,152 @@ public class MainWin extends JFrame {
 
         JToolBar toolbar = new JToolBar("Tool bar");
 
-        // <a href="https://www.flaticon.com/free-icons/save" title="save icons">Save icons created by Yogi Aprelliyanto - Flaticon</a>
+        // <a href="https://www.flaticon.com/free-icons/save" title="save icons">Save
+        // icons created by Yogi Aprelliyanto - Flaticon</a>
         Image saveButtonIcon = null;
         try {
             saveButtonIcon = ImageIO.read(getClass().getResource("/gui/saveButtonIcon.png"));
-        }
-        catch (IOException i) {
+        } catch (IOException i) {
             ;
-        }
-        finally {            
+        } finally {
             JButton saveButton = new JButton();
-            saveButton.setActionCommand("Save");
-            saveButton.setToolTipText("Save");
+            saveButton.setActionCommand("Save File");
+            saveButton.setToolTipText("Save File");
             saveButton.setIcon(new ImageIcon(saveButtonIcon));
             saveButton.setBorder(null);
-            saveButton.setPreferredSize(new Dimension(32,32));
+            saveButton.setPreferredSize(new Dimension(32, 32));
             saveButton.addActionListener(event -> onSaveClick());
             toolbar.add(saveButton);
         }
         toolbar.add(Box.createHorizontalStrut(25));
         toolbar.addSeparator();
 
-        /* 
-        This dosen't work
-        saveButton = new JButton(new ImageIcon("saveButtonIcon.png"));
-        saveButton.setActionCommand("Save");
-        saveButton.setToolTipText("Save");
-        saveButton.setPreferredSize(new Dimension(32,32));
-        toolbar.add(saveButton);
-        toolbar.add(Box.createHorizontalStrut(25));
-        toolbar.addSeparator();
-        */
+        /*
+         * This dosen't work
+         * 
+         * saveButton = new JButton(new ImageIcon("saveButtonIcon.png"));
+         * saveButton.setActionCommand("Save");
+         * saveButton.setToolTipText("Save");
+         * saveButton.setPreferredSize(new Dimension(32,32));
+         * toolbar.add(saveButton);
+         * toolbar.add(Box.createHorizontalStrut(25));
+         * toolbar.addSeparator();
+         */
 
-        // <a href="https://www.flaticon.com/free-icons/save" title="save icons">Save icons created by Freepik - Flaticon</a>
+        // <a href="https://www.flaticon.com/free-icons/save" title="save icons">Save
+        // icons created by Freepik - Flaticon</a>
         Image saveAsButtonIcon = null;
         try {
             saveAsButtonIcon = ImageIO.read(getClass().getResource("/gui/saveAsButtonIcon.png"));
-        }
-        catch (IOException i) {
+        } catch (IOException i) {
             ;
-        }
-        finally {            
+        } finally {
             JButton saveAsButton = new JButton();
-            saveAsButton.setActionCommand("Save As");
-            saveAsButton.setToolTipText("Save As");
+            saveAsButton.setActionCommand("Save File As");
+            saveAsButton.setToolTipText("Save File As");
             saveAsButton.setIcon(new ImageIcon(saveAsButtonIcon));
             saveAsButton.setBorder(null);
-            saveAsButton.setPreferredSize(new Dimension(32,32));
+            saveAsButton.setPreferredSize(new Dimension(32, 32));
             saveAsButton.addActionListener(event -> onSaveAsClick());
             toolbar.add(saveAsButton);
         }
         toolbar.add(Box.createHorizontalStrut(25));
         toolbar.addSeparator();
 
-        // <a href="https://www.flaticon.com/free-icons/open-folder" title="open folder icons">Open folder icons created by Freepik - Flaticon</a>
+        // <a href="https://www.flaticon.com/free-icons/open-folder" title="open folder
+        // icons">Open folder icons created by Freepik - Flaticon</a>
         Image openButtonIcon = null;
         try {
             openButtonIcon = ImageIO.read(getClass().getResource("/gui/openButtonIcon.png"));
-        }
-        catch (IOException i) {
+        } catch (IOException i) {
             ;
-        }
-        finally {            
+        } finally {
             JButton openButton = new JButton();
-            openButton.setActionCommand("Save As");
-            openButton.setToolTipText("Save As");
+            openButton.setActionCommand("Open File");
+            openButton.setToolTipText("Open File");
             openButton.setIcon(new ImageIcon(openButtonIcon));
             openButton.setBorder(null);
-            openButton.setPreferredSize(new Dimension(32,32));
+            openButton.setPreferredSize(new Dimension(32, 32));
             openButton.addActionListener(event -> onOpenClick());
             toolbar.add(openButton);
         }
         toolbar.add(Box.createHorizontalStrut(25));
         toolbar.addSeparator();
 
-        // <a href="https://www.flaticon.com/free-icons/ice-cream" title="ice cream icons">Ice cream icons created by Freepik - Flaticon</a>
-        // create ice cream flavor
+        // <a href="https://www.flaticon.com/free-icons/ice-cream" title="ice cream
+        // icons">Ice cream icons created by Freepik - Flaticon</a>
+        Image createIceCreamFlavorButtonIcon = null;
+        try {
+            createIceCreamFlavorButtonIcon = ImageIO
+                    .read(getClass().getResource("/gui/createIceCreamFlavorButtonIcon.png"));
+        } catch (IOException i) {
+            ;
+        } finally {
+            JButton createIceCreamFlavorButton = new JButton();
+            createIceCreamFlavorButton.setActionCommand("Create Ice Cream Flavor");
+            createIceCreamFlavorButton.setToolTipText("Create Ice Cream Flavor");
+            createIceCreamFlavorButton.setIcon(new ImageIcon(createIceCreamFlavorButtonIcon));
+            createIceCreamFlavorButton.setBorder(null);
+            createIceCreamFlavorButton.setPreferredSize(new Dimension(32, 32));
+            createIceCreamFlavorButton.addActionListener(event -> onCreateIceCreamFlavorClcik());
+            toolbar.add(createIceCreamFlavorButton);
+        }
+        toolbar.add(Box.createHorizontalStrut(25));
+        toolbar.addSeparator();
 
-        // <a href="https://www.flaticon.com/free-icons/syrup" title="syrup icons">Syrup icons created by surang - Flaticon</a>
-        // create mix in flavors
+        // <a href="https://www.flaticon.com/free-icons/syrup" title="syrup icons">Syrup
+        // icons created by surang - Flaticon</a>
+        Image createMixInFlavorButtonIcon = null;
+        try {
+            createMixInFlavorButtonIcon = ImageIO
+                    .read(getClass().getResource("/gui/createMixInFlavorButtonIcon.png"));
+        } catch (IOException i) {
+            ;
+        } finally {
+            JButton createMixInFlavorButton = new JButton();
+            createMixInFlavorButton.setActionCommand("Create MixIn Flavor");
+            createMixInFlavorButton.setToolTipText("Create MixIn Flavor");
+            createMixInFlavorButton.setIcon(new ImageIcon(createMixInFlavorButtonIcon));
+            createMixInFlavorButton.setBorder(null);
+            createMixInFlavorButton.setPreferredSize(new Dimension(32, 32));
+            createMixInFlavorButton.addActionListener(event -> onCreateMixInFlavorClick());
+            toolbar.add(createMixInFlavorButton);
+        }
+        toolbar.add(Box.createHorizontalStrut(25));
+        toolbar.addSeparator();
 
-        // <a href="https://www.flaticon.com/free-icons/scoop" title="scoop icons">Scoop icons created by kornkun - Flaticon</a>
-        // create scoop flavors
+        // <a href="https://www.flaticon.com/free-icons/scoop" title="scoop icons">Scoop
+        // icons created by kornkun - Flaticon</a>
+        Image createScoopButtonIcon = null;
+        try {
+            createScoopButtonIcon = ImageIO
+                    .read(getClass().getResource("/gui/createScoopButtonIcon.png"));
+        } catch (IOException i) {
+            ;
+        } finally {
+            JButton createScoopButton = new JButton();
+            createScoopButton.setActionCommand("Create Scoop");
+            createScoopButton.setToolTipText("Create Scoop");
+            createScoopButton.setIcon(new ImageIcon(createScoopButtonIcon));
+            createScoopButton.setBorder(null);
+            createScoopButton.setPreferredSize(new Dimension(32, 32));
+            createScoopButton.addActionListener(event -> onCreateScoopClick());
+            toolbar.add(createScoopButton);
+        }
+        toolbar.add(Box.createHorizontalStrut(25));
+        toolbar.addSeparator();
 
-        // <a href="https://www.flaticon.com/free-icons/dessert" title="dessert icons">Dessert icons created by berkahicon - Flaticon</a>
+        // <a href="https://www.flaticon.com/free-icons/dessert" title="dessert
+        // icons">Dessert icons created by berkahicon - Flaticon</a>
         // view ice cream flavors
 
-        // <a href="https://www.flaticon.com/free-icons/topping" title="topping icons">Topping icons created by Freepik - Flaticon</a>
+        // <a href="https://www.flaticon.com/free-icons/topping" title="topping
+        // icons">Topping icons created by Freepik - Flaticon</a>
         // view mix in flavors
 
-        // <a href="https://www.flaticon.com/free-icons/food-and-restaurant" title="food and restaurant icons">Food and restaurant icons created by Freepik - Flaticon</a>
+        // <a href="https://www.flaticon.com/free-icons/food-and-restaurant" title="food
+        // and restaurant icons">Food and restaurant icons created by Freepik -
+        // Flaticon</a>
         // view scoops
 
         getContentPane().add(toolbar, BorderLayout.PAGE_START);
@@ -225,6 +281,7 @@ public class MainWin extends JFrame {
                 constraintsLabel.gridy = 0;
                 add(name, constraintsLabel);
                 nameOfFlavor = new JTextField(20);
+                nameOfFlavor.setText("");
                 constraints.gridx = 1;
                 constraints.gridy = 0;
                 constraints.weighty = 1;
@@ -235,6 +292,7 @@ public class MainWin extends JFrame {
                 constraintsLabel.gridy = 1;
                 add(description, constraintsLabel);
                 descriptionOfFlavor = new JTextField(20);
+                descriptionOfFlavor.setText("");
                 constraints.gridx = 1;
                 constraints.gridy = 1;
                 constraints.weighty = 1;
@@ -245,6 +303,7 @@ public class MainWin extends JFrame {
                 constraintsLabel.gridy = 2;
                 add(price, constraintsLabel);
                 priceOfFlavor = new JTextField(20);
+                priceOfFlavor.setText("");
                 constraints.gridx = 1;
                 constraints.gridy = 2;
                 constraints.weighty = 1;
@@ -255,6 +314,7 @@ public class MainWin extends JFrame {
                 constraintsLabel.gridy = 3;
                 add(cost, constraintsLabel);
                 costOfFlavor = new JTextField(20);
+                costOfFlavor.setText("");
                 constraints.gridx = 1;
                 constraints.gridy = 3;
                 constraints.weighty = 1;
@@ -283,12 +343,15 @@ public class MainWin extends JFrame {
 
                 pack();
                 setVisible(true);
-                emporium.addIceCreamFlavor(
-                        new product.IceCreamFlavor(nameOfFlavor.getText(), descriptionOfFlavor.getText(),
-                                Integer.valueOf(priceOfFlavor.getText()), Integer.valueOf(costOfFlavor.getText())));
+                if (!canceled && !nameOfFlavor.getText().equals("") && !descriptionOfFlavor.getText().equals("") &&
+                        !priceOfFlavor.getText().equals("") && !costOfFlavor.getText().equals("")) {
+                    emporium.addIceCreamFlavor(
+                            new product.IceCreamFlavor(nameOfFlavor.getText(), descriptionOfFlavor.getText(),
+                                    Integer.valueOf(priceOfFlavor.getText()),
+                                    Integer.valueOf(costOfFlavor.getText())));
+                }
                 view(Screen.ICE_CREAM_FLAVORS);
             }
-
         }
         createIceCreamFlavorDialog cicfd = new createIceCreamFlavorDialog(this);
     }
@@ -327,6 +390,7 @@ public class MainWin extends JFrame {
                 constraintsLabel.gridy = 0;
                 add(name, constraintsLabel);
                 nameOfFlavor = new JTextField(20);
+                nameOfFlavor.setText("");
                 constraints.gridx = 1;
                 constraints.gridy = 0;
                 constraints.weighty = 1;
@@ -337,6 +401,7 @@ public class MainWin extends JFrame {
                 constraintsLabel.gridy = 1;
                 add(description, constraintsLabel);
                 descriptionOfFlavor = new JTextField(20);
+                descriptionOfFlavor.setText("");
                 constraints.gridx = 1;
                 constraints.gridy = 1;
                 constraints.weighty = 1;
@@ -347,6 +412,7 @@ public class MainWin extends JFrame {
                 constraintsLabel.gridy = 2;
                 add(price, constraintsLabel);
                 priceOfFlavor = new JTextField(20);
+                priceOfFlavor.setText("");
                 constraints.gridx = 1;
                 constraints.gridy = 2;
                 constraints.weighty = 1;
@@ -357,6 +423,7 @@ public class MainWin extends JFrame {
                 constraintsLabel.gridy = 3;
                 add(cost, constraintsLabel);
                 costOfFlavor = new JTextField(20);
+                costOfFlavor.setText("");
                 constraints.gridx = 1;
                 constraints.gridy = 3;
                 constraints.weighty = 1;
@@ -385,9 +452,13 @@ public class MainWin extends JFrame {
 
                 pack();
                 setVisible(true);
-                emporium.addMixInFlavor(
-                        new product.MixInFlavor(nameOfFlavor.getText(), descriptionOfFlavor.getText(),
-                                Integer.valueOf(priceOfFlavor.getText()), Integer.valueOf(costOfFlavor.getText())));
+                if (!canceled && !nameOfFlavor.getText().equals("") && !descriptionOfFlavor.getText().equals("") &&
+                        !priceOfFlavor.getText().equals("") && !costOfFlavor.getText().equals("")) {
+                    emporium.addIceCreamFlavor(
+                            new product.IceCreamFlavor(nameOfFlavor.getText(), descriptionOfFlavor.getText(),
+                                    Integer.valueOf(priceOfFlavor.getText()),
+                                    Integer.valueOf(costOfFlavor.getText())));
+                }
                 view(Screen.MIX_IN_FLAVORS);
             }
 
@@ -443,9 +514,9 @@ public class MainWin extends JFrame {
 
     public void onAboutClick() {
         String onAboutString = "<HTML>" +
-        "<h1><p style=\"text-align:center\">MAVS Ice Cream Emporium</p><h1>"+
-        "<h3><p style=\"text-align:center\">Copyright 2022 by Rishabh Mediratta<p></h3>"+
-        "</HTML>";
+                "<h1><p style=\"text-align:center\">MAVS Ice Cream Emporium</p><h1>" +
+                "<h3><p style=\"text-align:center\">Copyright 2022 by Rishabh Mediratta<p></h3>" +
+                "</HTML>";
         JOptionPane.showMessageDialog(this, onAboutString, "About MICE", JOptionPane.PLAIN_MESSAGE, null);
     }
 
