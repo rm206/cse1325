@@ -594,9 +594,7 @@ public class MainWin extends JFrame {
                 "</body>" +
                 "</HTML>";
             
-            JLabel stringLabel = new JLabel(onAboutString);
-            stringLabel.setFont(new Font("Arial", Font.BOLD, 18));
-            JOptionPane.showMessageDialog(this, stringLabel, "About MICE", JOptionPane.PLAIN_MESSAGE, null);
+        JOptionPane.showMessageDialog(this, onAboutString, "About MICE", JOptionPane.PLAIN_MESSAGE, null);
     }
 
     public void onSaveClick() {
