@@ -228,16 +228,69 @@ public class MainWin extends JFrame {
 
         // <a href="https://www.flaticon.com/free-icons/dessert" title="dessert
         // icons">Dessert icons created by berkahicon - Flaticon</a>
-        // view ice cream flavors
+        Image viewIceCreamFlavorsButtonIcon = null;
+        try {
+            viewIceCreamFlavorsButtonIcon = ImageIO
+                    .read(getClass().getResource("/gui/viewIceCreamFlavorsButtonIcon.png"));
+        } catch (IOException i) {
+            ;
+        } finally {
+            JButton viewIceCreamFlavorsButton = new JButton();
+            viewIceCreamFlavorsButton.setActionCommand("View Ice Cream Flavors");
+            viewIceCreamFlavorsButton.setToolTipText("View Ice Cream Flavors");
+            viewIceCreamFlavorsButton.setIcon(new ImageIcon(viewIceCreamFlavorsButtonIcon));
+            viewIceCreamFlavorsButton.setBorder(null);
+            viewIceCreamFlavorsButton.setPreferredSize(new Dimension(32, 32));
+            viewIceCreamFlavorsButton.addActionListener(event -> view(Screen.ICE_CREAM_FLAVORS));
+            toolbar.add(viewIceCreamFlavorsButton);
+        }
+        toolbar.add(Box.createHorizontalStrut(25));
+        toolbar.addSeparator();
 
         // <a href="https://www.flaticon.com/free-icons/topping" title="topping
         // icons">Topping icons created by Freepik - Flaticon</a>
         // view mix in flavors
+        Image viewMixInFlavorsButtonIcon = null;
+        try {
+            viewMixInFlavorsButtonIcon = ImageIO
+                    .read(getClass().getResource("/gui/viewMixInFlavorsButtonIcon.png"));
+        } catch (IOException i) {
+            ;
+        } finally {
+            JButton viewMixInFlavorsButton = new JButton();
+            viewMixInFlavorsButton.setActionCommand("View MixInFlavors");
+            viewMixInFlavorsButton.setToolTipText("View MixIn Flavors");
+            viewMixInFlavorsButton.setIcon(new ImageIcon(viewMixInFlavorsButtonIcon));
+            viewMixInFlavorsButton.setBorder(null);
+            viewMixInFlavorsButton.setPreferredSize(new Dimension(32, 32));
+            viewMixInFlavorsButton.addActionListener(event -> view(Screen.MIX_IN_FLAVORS));
+            toolbar.add(viewMixInFlavorsButton);
+        }
+        toolbar.add(Box.createHorizontalStrut(25));
+        toolbar.addSeparator();
 
         // <a href="https://www.flaticon.com/free-icons/food-and-restaurant" title="food
         // and restaurant icons">Food and restaurant icons created by Freepik -
         // Flaticon</a>
         // view scoops
+        Image viewScoopsButtonIcon = null;
+        try {
+            viewScoopsButtonIcon = ImageIO
+                    .read(getClass().getResource("/gui/viewScoopsButtonIcon.png"));
+        } catch (IOException i) {
+            ;
+        } finally {
+            JButton viewScoopsButton = new JButton();
+            viewScoopsButton.setActionCommand("View Scoops");
+            viewScoopsButton.setToolTipText("View Scoops");
+            viewScoopsButton.setIcon(new ImageIcon(viewScoopsButtonIcon));
+            viewScoopsButton.setBorder(null);
+            viewScoopsButton.setPreferredSize(new Dimension(32, 32));
+            viewScoopsButton.addActionListener(event -> view(Screen.SCOOPS));
+            toolbar.add(viewScoopsButton);
+        }
+        toolbar.add(Box.createHorizontalStrut(25));
+        toolbar.addSeparator();
 
         getContentPane().add(toolbar, BorderLayout.PAGE_START);
         setVisible(true);
