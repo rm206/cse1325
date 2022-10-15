@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.JDialog;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -15,6 +16,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.io.IOException;
+import java.awt.Font;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -567,10 +569,34 @@ public class MainWin extends JFrame {
 
     public void onAboutClick() {
         String onAboutString = "<HTML>" +
-                "<h1><p style=\"text-align:center\">MAVS Ice Cream Emporium</p><h1>" +
-                "<h3><p style=\"text-align:center\">Copyright 2022 by Rishabh Mediratta<p></h3>" +
+                "<body style=\"text-align : center\">" +
+                "<h1><p>MAVS Ice Cream Emporium</p><h1>" +
+                "<h3><p>Copyright 2022 by Rishabh Mediratta<p></h3>" +
+                "<a href=\"https://www.flaticon.com/free-icons/save\" title=\"save icons\">Save icons created by Yogi Aprelliyanto - Flaticon</a>" +
+                "<br/>" +
+                "<a href=\"https://www.flaticon.com/free-icons/save\" title=\"save icons\">Save icons created by Freepik - Flaticon</a>" +
+                "<br/>" +
+                "<a href=\"https://www.flaticon.com/free-icons/open-folder\" title=\"open folder icons\">Open folder icons created by Freepik - Flaticon</a>" +
+                "<br/>" +
+                "<a href=\"https://www.flaticon.com/free-icons/ice-cream\" title=\"ice cream icons\">Ice cream icons created by Freepik - Flaticon</a>" +
+                "<br/>" +
+                "<a href=\"https://www.flaticon.com/free-icons/syrup\" title=\"syrup icons\">Syrup icons created by surang - Flaticon</a>" +
+                "<br/>" +
+                "<a href=\"https://www.flaticon.com/free-icons/scoop\" title=\"scoop icons\">Scoop icons created by kornkun - Flaticon</a>" +
+                "<br/>" +
+                "<a href=\"https://www.flaticon.com/free-icons/dessert\" title=\"dessert icons\">Dessert icons created by berkahicon - Flaticon</a>" +
+                "<br/>" +
+                "<a href=\"https://www.flaticon.com/free-icons/dessert\" title=\"dessert icons\">Dessert icons created by berkahicon - Flaticon</a>" +
+                "<br/>" +
+                "<a href=\"https://www.flaticon.com/free-icons/topping\" title=\"topping icons\">Topping icons created by Freepik - Flaticon</a>" +
+                "<br/>" +
+                "<a href=\"https://www.flaticon.com/free-icons/food-and-restaurant\" title=\"food and restaurant icons\">Food and restaurant icons created by Freepik - Flaticon</a>"+
+                "</body>" +
                 "</HTML>";
-        JOptionPane.showMessageDialog(this, onAboutString, "About MICE", JOptionPane.PLAIN_MESSAGE, null);
+            
+            JLabel stringLabel = new JLabel(onAboutString);
+            stringLabel.setFont(new Font("Arial", Font.BOLD, 18));
+            JOptionPane.showMessageDialog(this, stringLabel, "About MICE", JOptionPane.PLAIN_MESSAGE, null);
     }
 
     public void onSaveClick() {
