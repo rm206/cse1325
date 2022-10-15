@@ -145,15 +145,33 @@ public class MainWin extends JFrame {
         toolbar.addSeparator();
 
         // <a href="https://www.flaticon.com/free-icons/open-folder" title="open folder icons">Open folder icons created by Freepik - Flaticon</a>
-        // open
+        Image openButtonIcon = null;
+        try {
+            openButtonIcon = ImageIO.read(getClass().getResource("/gui/openButtonIcon.png"));
+        }
+        catch (IOException i) {
+            ;
+        }
+        finally {            
+            JButton openButton = new JButton();
+            openButton.setActionCommand("Save As");
+            openButton.setToolTipText("Save As");
+            openButton.setIcon(new ImageIcon(openButtonIcon));
+            openButton.setBorder(null);
+            openButton.setPreferredSize(new Dimension(32,32));
+            openButton.addActionListener(event -> onOpenClick());
+            toolbar.add(openButton);
+        }
+        toolbar.add(Box.createHorizontalStrut(25));
+        toolbar.addSeparator();
 
-        //
+        // <a href="https://www.flaticon.com/free-icons/ice-cream" title="ice cream icons">Ice cream icons created by Freepik - Flaticon</a>
         // create ice cream flavor
 
-        //
+        // <a href="https://www.flaticon.com/free-icons/syrup" title="syrup icons">Syrup icons created by surang - Flaticon</a>
         // create mix in flavors
 
-        // 
+        // <a href="https://www.flaticon.com/free-icons/scoop" title="scoop icons">Scoop icons created by kornkun - Flaticon</a>
         // create scoop flavors
 
         // <a href="https://www.flaticon.com/free-icons/dessert" title="dessert icons">Dessert icons created by berkahicon - Flaticon</a>
@@ -436,6 +454,10 @@ public class MainWin extends JFrame {
     }
 
     public void onSaveAsClick() {
+        ;
+    }
+
+    public void onOpenClick() {
         ;
     }
 
