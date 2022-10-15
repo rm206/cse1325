@@ -93,8 +93,6 @@ public class MainWin extends JFrame {
 
         JToolBar toolbar = new JToolBar("Tool bar");
 
-        // <a href="https://www.flaticon.com/free-icons/save" title="save icons">Save
-        // icons created by Yogi Aprelliyanto - Flaticon</a>
         Image saveButtonIcon = null;
         try {
             saveButtonIcon = ImageIO.read(getClass().getResource("/gui/saveButtonIcon.png"));
@@ -125,8 +123,6 @@ public class MainWin extends JFrame {
          * toolbar.addSeparator();
          */
 
-        // <a href="https://www.flaticon.com/free-icons/save" title="save icons">Save
-        // icons created by Freepik - Flaticon</a>
         Image saveAsButtonIcon = null;
         try {
             saveAsButtonIcon = ImageIO.read(getClass().getResource("/gui/saveAsButtonIcon.png"));
@@ -145,8 +141,6 @@ public class MainWin extends JFrame {
         toolbar.add(Box.createHorizontalStrut(25));
         toolbar.addSeparator();
 
-        // <a href="https://www.flaticon.com/free-icons/open-folder" title="open folder
-        // icons">Open folder icons created by Freepik - Flaticon</a>
         Image openButtonIcon = null;
         try {
             openButtonIcon = ImageIO.read(getClass().getResource("/gui/openButtonIcon.png"));
@@ -165,8 +159,6 @@ public class MainWin extends JFrame {
         toolbar.add(Box.createHorizontalStrut(25));
         toolbar.addSeparator();
 
-        // <a href="https://www.flaticon.com/free-icons/ice-cream" title="ice cream
-        // icons">Ice cream icons created by Freepik - Flaticon</a>
         Image createIceCreamFlavorButtonIcon = null;
         try {
             createIceCreamFlavorButtonIcon = ImageIO
@@ -186,8 +178,6 @@ public class MainWin extends JFrame {
         toolbar.add(Box.createHorizontalStrut(25));
         toolbar.addSeparator();
 
-        // <a href="https://www.flaticon.com/free-icons/syrup" title="syrup icons">Syrup
-        // icons created by surang - Flaticon</a>
         Image createMixInFlavorButtonIcon = null;
         try {
             createMixInFlavorButtonIcon = ImageIO
@@ -207,8 +197,6 @@ public class MainWin extends JFrame {
         toolbar.add(Box.createHorizontalStrut(25));
         toolbar.addSeparator();
 
-        // <a href="https://www.flaticon.com/free-icons/scoop" title="scoop icons">Scoop
-        // icons created by kornkun - Flaticon</a>
         Image createScoopButtonIcon = null;
         try {
             createScoopButtonIcon = ImageIO
@@ -229,8 +217,6 @@ public class MainWin extends JFrame {
         toolbar.add(Box.createHorizontalStrut(25));
         toolbar.addSeparator();
 
-        // <a href="https://www.flaticon.com/free-icons/dessert" title="dessert
-        // icons">Dessert icons created by berkahicon - Flaticon</a>
         Image viewIceCreamFlavorsButtonIcon = null;
         try {
             viewIceCreamFlavorsButtonIcon = ImageIO
@@ -250,8 +236,6 @@ public class MainWin extends JFrame {
         toolbar.add(Box.createHorizontalStrut(25));
         toolbar.addSeparator();
 
-        // <a href="https://www.flaticon.com/free-icons/topping" title="topping
-        // icons">Topping icons created by Freepik - Flaticon</a>
         Image viewMixInFlavorsButtonIcon = null;
         try {
             viewMixInFlavorsButtonIcon = ImageIO
@@ -271,9 +255,6 @@ public class MainWin extends JFrame {
         toolbar.add(Box.createHorizontalStrut(25));
         toolbar.addSeparator();
 
-        // <a href="https://www.flaticon.com/free-icons/food-and-restaurant" title="food
-        // and restaurant icons">Food and restaurant icons created by Freepik -
-        // Flaticon</a>
         Image viewScoopsButtonIcon = null;
         try {
             viewScoopsButtonIcon = ImageIO
