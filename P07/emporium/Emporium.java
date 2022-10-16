@@ -1,5 +1,7 @@
 package emporium;
 
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
 import java.util.ArrayList;
 
 import product.IceCreamFlavor;
@@ -7,6 +9,18 @@ import product.MixInFlavor;
 import product.Scoop;
 
 public class Emporium {
+    
+    public Emporium() {
+        ;
+    }
+
+    public Emporium(BufferedReader in) {
+        ;
+    }
+
+    public void save(BufferedWriter out) {
+        ;
+    }
     
     public void addMixInFlavor(MixInFlavor flavor) {
         if (mixInFlavors == null)

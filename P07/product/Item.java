@@ -1,5 +1,8 @@
 package product;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+
 public class Item {
 
     public Item(String name, String description, int cost, int price) {
@@ -7,6 +10,14 @@ public class Item {
         this.description = description;
         this.cost = cost;
         this.price = price;
+    }
+
+    public Item(BufferedReader in) {
+        ;
+    }
+
+    public void save(BufferedWriter out) {
+        ;
     }
 
     public String name() {

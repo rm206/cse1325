@@ -2,12 +2,15 @@ package gui;
 
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import javax.swing.JMenuBar;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
@@ -17,7 +20,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.io.IOException;
 import java.awt.Font;
-
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,6 +27,15 @@ import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.Image;
 import javax.imageio.ImageIO;
+import javax.management.RuntimeErrorException;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import emporium.Emporium;
 
@@ -39,6 +50,8 @@ public class MainWin extends JFrame {
         super(MainWintitle);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700, 500);
+
+        filename = new File("untitled.mice");
 
         JMenuBar menubar = new JMenuBar();
 
@@ -384,7 +397,7 @@ public class MainWin extends JFrame {
                             new product.IceCreamFlavor(nameOfFlavor.getText(), descriptionOfFlavor.getText(),
                                     Integer.valueOf(priceOfFlavor.getText()),
                                     Integer.valueOf(costOfFlavor.getText())));
-                            createScoopButton.setEnabled(emporium.iceCreamFlavors() != null);
+                    createScoopButton.setEnabled(emporium.iceCreamFlavors() != null);
                 }
                 view(Screen.ICE_CREAM_FLAVORS);
             }
@@ -553,41 +566,91 @@ public class MainWin extends JFrame {
                 "<body style=\"text-align : center\">" +
                 "<h1><p>MAVS Ice Cream Emporium</p><h1>" +
                 "<h3><p>Copyright 2022 by Rishabh Mediratta<p></h3>" +
-                "<a href=\"https://www.flaticon.com/free-icons/save\" title=\"save icons\">Save icons created by Yogi Aprelliyanto - Flaticon</a>" +
+                "<a href=\"https://www.flaticon.com/free-icons/save\" title=\"save icons\">Save icons created by Yogi Aprelliyanto - Flaticon</a>"
+                +
                 "<br/>" +
-                "<a href=\"https://www.flaticon.com/free-icons/save\" title=\"save icons\">Save icons created by Freepik - Flaticon</a>" +
+                "<a href=\"https://www.flaticon.com/free-icons/save\" title=\"save icons\">Save icons created by Freepik - Flaticon</a>"
+                +
                 "<br/>" +
-                "<a href=\"https://www.flaticon.com/free-icons/open-folder\" title=\"open folder icons\">Open folder icons created by Freepik - Flaticon</a>" +
+                "<a href=\"https://www.flaticon.com/free-icons/open-folder\" title=\"open folder icons\">Open folder icons created by Freepik - Flaticon</a>"
+                +
                 "<br/>" +
-                "<a href=\"https://www.flaticon.com/free-icons/ice-cream\" title=\"ice cream icons\">Ice cream icons created by Freepik - Flaticon</a>" +
+                "<a href=\"https://www.flaticon.com/free-icons/ice-cream\" title=\"ice cream icons\">Ice cream icons created by Freepik - Flaticon</a>"
+                +
                 "<br/>" +
-                "<a href=\"https://www.flaticon.com/free-icons/syrup\" title=\"syrup icons\">Syrup icons created by surang - Flaticon</a>" +
+                "<a href=\"https://www.flaticon.com/free-icons/syrup\" title=\"syrup icons\">Syrup icons created by surang - Flaticon</a>"
+                +
                 "<br/>" +
-                "<a href=\"https://www.flaticon.com/free-icons/scoop\" title=\"scoop icons\">Scoop icons created by kornkun - Flaticon</a>" +
+                "<a href=\"https://www.flaticon.com/free-icons/scoop\" title=\"scoop icons\">Scoop icons created by kornkun - Flaticon</a>"
+                +
                 "<br/>" +
-                "<a href=\"https://www.flaticon.com/free-icons/dessert\" title=\"dessert icons\">Dessert icons created by berkahicon - Flaticon</a>" +
+                "<a href=\"https://www.flaticon.com/free-icons/dessert\" title=\"dessert icons\">Dessert icons created by berkahicon - Flaticon</a>"
+                +
                 "<br/>" +
-                "<a href=\"https://www.flaticon.com/free-icons/dessert\" title=\"dessert icons\">Dessert icons created by berkahicon - Flaticon</a>" +
+                "<a href=\"https://www.flaticon.com/free-icons/dessert\" title=\"dessert icons\">Dessert icons created by berkahicon - Flaticon</a>"
+                +
                 "<br/>" +
-                "<a href=\"https://www.flaticon.com/free-icons/topping\" title=\"topping icons\">Topping icons created by Freepik - Flaticon</a>" +
+                "<a href=\"https://www.flaticon.com/free-icons/topping\" title=\"topping icons\">Topping icons created by Freepik - Flaticon</a>"
+                +
                 "<br/>" +
-                "<a href=\"https://www.flaticon.com/free-icons/food-and-restaurant\" title=\"food and restaurant icons\">Food and restaurant icons created by Freepik - Flaticon</a>"+
+                "<a href=\"https://www.flaticon.com/free-icons/food-and-restaurant\" title=\"food and restaurant icons\">Food and restaurant icons created by Freepik - Flaticon</a>"
+                +
                 "</body>" +
                 "</HTML>";
-            
+
         JOptionPane.showMessageDialog(this, onAboutString, "About MICE", JOptionPane.PLAIN_MESSAGE, null);
     }
 
+    public void onOpenClick() {
+        final JFileChooser fc = new JFileChooser(filename);
+        FileFilter miceFiles = new FileNameExtensionFilter("Mice files", "mice");
+        fc.addChoosableFileFilter(miceFiles);
+        fc.setFileFilter(miceFiles);
+
+        int result = fc.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            filename = fc.getSelectedFile();
+            try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+                String magicCookie = br.readLine();
+                if (!magicCookie.equals(MAGIC_COOKIE))
+                    throw new RuntimeException("Not a MICE file");
+                String fileVersion = br.readLine();
+                if (!fileVersion.equals(FILE_VERSION))
+                    throw new RuntimeException("Incompatible MICE file format");
+
+                emporium = new Emporium(br);
+                view(Screen.SCOOPS);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Cannot open " + filename + '\n' + e, "Failed",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
     public void onSaveClick() {
-        ;
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
+            bw.write(MAGIC_COOKIE + '\n');
+            bw.write(FILE_VERSION + '\n');
+            emporium.save(bw);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Cannot open " + filename + '\n' + e, "Failed",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void onSaveAsClick() {
-        ;
-    }
+        final JFileChooser fc = new JFileChooser(filename);
+        FileFilter miceFiles = new FileNameExtensionFilter("Mice files", "mice");
+        fc.addChoosableFileFilter(miceFiles);
+        fc.setFileFilter(miceFiles);
 
-    public void onOpenClick() {
-        ;
+        int result = fc.showSaveDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            filename = fc.getSelectedFile();
+            if (!filename.getAbsolutePath().endsWith(".mice"))
+                filename = new File(filename.getAbsolutePath() + ".mice");
+            onSaveClick();
+        }
     }
 
     private void view(Screen screen) {
@@ -649,4 +712,8 @@ public class MainWin extends JFrame {
     private JButton viewIceCreamFlavorsButton;
     private JButton viewMixInFlavorsButton;
     private JButton viewScoopsButton;
+
+    private File filename;
+    private String FILE_VERSION = "1.0";
+    private String MAGIC_COOKIE = "ICECREAMYUMYUM";
 }
