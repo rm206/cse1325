@@ -2,6 +2,7 @@ package product;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 
 public class MixIn {
 
@@ -10,12 +11,14 @@ public class MixIn {
         this.amount = amount;
     }
 
-    public MixIn(BufferedReader in) {
-        ;
+    public MixIn(BufferedReader in) throws IOException{
+        this.flavor = new MixInFlavor(in);
+        this.amount = MixInAmount.valueOf(in.readLine());
     }
 
-    public void save(BufferedWriter out) {
-        ;
+    public void save(BufferedWriter out) throws IOException {
+        flavor.save(out);
+        out.write("" + amount + "\n");
     }
 
     @Override

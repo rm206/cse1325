@@ -2,6 +2,7 @@ package product;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 
 public class Item {
 
@@ -12,12 +13,18 @@ public class Item {
         this.price = price;
     }
 
-    public Item(BufferedReader in) {
-        ;
+    public Item(BufferedReader in) throws IOException{
+        name = in.readLine();
+        description = in.readLine();
+        cost = Integer.parseInt(in.readLine());
+        price = Integer.parseInt(in.readLine());
     }
 
-    public void save(BufferedWriter out) {
-        ;
+    public void save(BufferedWriter out) throws IOException{
+        out.write("" + name + "\n");
+        out.write("" + description + "\n");
+        out.write("" + cost + "\n");
+        out.write("" + price + "\n");
     }
 
     public String name() {

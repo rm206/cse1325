@@ -56,6 +56,9 @@ public class MainWin extends JFrame {
         JMenuBar menubar = new JMenuBar();
 
         JMenu file = new JMenu("File");
+        JMenuItem save = new JMenuItem("Save");
+        JMenuItem saveAs = new JMenuItem("Save As");
+        JMenuItem open = new JMenuItem("Open");
         JMenuItem quit = new JMenuItem("Quit");
 
         JMenu view = new JMenu("View");
@@ -72,6 +75,9 @@ public class MainWin extends JFrame {
         JMenuItem about = new JMenuItem("About");
 
         quit.addActionListener(event -> onQuitClick());
+        save.addActionListener(event -> onSaveClick());
+        saveAs.addActionListener(event -> onSaveAsClick());
+        open.addActionListener(event -> onOpenClick());
 
         viewIceCreamFlavor.addActionListener(event -> view(Screen.ICE_CREAM_FLAVORS));
         viewMixInFlavor.addActionListener(event -> view(Screen.MIX_IN_FLAVORS));
@@ -83,6 +89,9 @@ public class MainWin extends JFrame {
 
         about.addActionListener(event -> onAboutClick());
 
+        file.add(save);
+        file.add(saveAs);
+        file.add(open);
         file.add(quit);
 
         view.add(viewIceCreamFlavor);
@@ -503,8 +512,8 @@ public class MainWin extends JFrame {
                 setVisible(true);
                 if (!canceled && !nameOfFlavor.getText().equals("") && !descriptionOfFlavor.getText().equals("") &&
                         !priceOfFlavor.getText().equals("") && !costOfFlavor.getText().equals("")) {
-                    emporium.addIceCreamFlavor(
-                            new product.IceCreamFlavor(nameOfFlavor.getText(), descriptionOfFlavor.getText(),
+                    emporium.addMixInFlavor(
+                            new product.MixInFlavor(nameOfFlavor.getText(), descriptionOfFlavor.getText(),
                                     Integer.valueOf(priceOfFlavor.getText()),
                                     Integer.valueOf(costOfFlavor.getText())));
                 }
@@ -516,7 +525,7 @@ public class MainWin extends JFrame {
     }
 
     public void onCreateScoopClick() {
-        product.Scoop scoopToAdd = new product.Scoop(null);
+        product.Scoop scoopToAdd = new product.Scoop();
         product.IceCreamFlavor iceCreamFlavorForScoop = (product.IceCreamFlavor) JOptionPane.showInputDialog(
                 this,
                 "Pick Ice Cream flavor",

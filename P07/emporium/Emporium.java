@@ -1,6 +1,7 @@
 package emporium;
 
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.BufferedReader;
 import java.util.ArrayList;
 
@@ -14,12 +15,35 @@ public class Emporium {
         ;
     }
 
-    public Emporium(BufferedReader in) {
-        ;
+    public Emporium(BufferedReader in) throws IOException{
+        for(int j = 0 ; j < Integer.parseInt(in.readLine()) ; j++) {
+            mixInFlavors.add(new MixInFlavor(in));
+        }
+
+        for(int j = 0 ; j < Integer.parseInt(in.readLine()) ; j++) {
+            iceCreamFlavors.add(new IceCreamFlavor(in));
+        }
+
+        for(int j = 0 ; j < Integer.parseInt(in.readLine()) ; j++) {
+            scoops.add(new Scoop(in));
+        }
     }
 
-    public void save(BufferedWriter out) {
-        ;
+    public void save(BufferedWriter out) throws IOException{
+        out.write("" + mixInFlavors.size() + "\n");
+        for(product.MixInFlavor m : mixInFlavors) {
+            m.save(out);
+        }
+
+        out.write("" + iceCreamFlavors.size() + "\n");
+        for(product.IceCreamFlavor i : iceCreamFlavors) {
+            i.save(out);
+        }
+
+        out.write("" + scoops.size() + "\n");
+        for(product.Scoop s : scoops) {
+            s.save(out);
+        }
     }
     
     public void addMixInFlavor(MixInFlavor flavor) {
