@@ -621,8 +621,9 @@ public class MainWin extends JFrame {
             filename = fc.getSelectedFile();
             try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
                 String magicCookie = br.readLine();
-                if (!magicCookie.equals(MAGIC_COOKIE))
+                if (!magicCookie.equals(MAGIC_COOKIE)) {
                     throw new RuntimeException("Not a MICE file");
+                }
                 String fileVersion = br.readLine();
                 if (!fileVersion.equals(FILE_VERSION))
                     throw new RuntimeException("Incompatible MICE file format");

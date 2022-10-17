@@ -16,7 +16,7 @@ public class Scoop {
     }
 
     public Scoop (BufferedReader in) throws IOException{
-        flavor = new IceCreamFlavor(in);
+        this.flavor = new IceCreamFlavor(in);
         int arrayListNoOfElements = Integer.parseInt(in.readLine());
         for(int i = 0 ; i < arrayListNoOfElements ; i++) {
             addMixIn(new MixIn(in));
