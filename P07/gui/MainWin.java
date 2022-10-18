@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 import javax.swing.JMenuBar;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
@@ -19,6 +18,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.Font;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -28,7 +28,6 @@ import java.awt.Dimension;
 import java.awt.Image;
 import javax.imageio.ImageIO;
 import javax.management.RuntimeErrorException;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -36,8 +35,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
+import javax.swing.BoxLayout;
 import emporium.Emporium;
+import java.awt.image.BufferedImage;
+import java.awt.Graphics;
 
 import product.IceCreamFlavor;
 import product.MixInFlavor;
@@ -573,7 +574,7 @@ public class MainWin extends JFrame {
     public void onAboutClick() {
         String onAboutString = "<HTML>" +
                 "<body style=\"text-align : center\">" +
-                "<h1><p>MAVS Ice Cream Emporium</p><h1>" +
+                "<div style=\"font-size : 20px\"><h1><p><b>MAVS Ice Cream Emporium<b></p><h1></div>" +
                 "<h3><p>Copyright 2022 by Rishabh Mediratta<p></h3>" +
                 "<a href=\"https://www.flaticon.com/free-icons/save\" title=\"save icons\">Save icons created by Yogi Aprelliyanto - Flaticon</a>"
                 +
@@ -604,10 +605,23 @@ public class MainWin extends JFrame {
                 "<br/>" +
                 "<a href=\"https://www.flaticon.com/free-icons/food-and-restaurant\" title=\"food and restaurant icons\">Food and restaurant icons created by Freepik - Flaticon</a>"
                 +
+                "<a href=\"https://www.flaticon.com/free-icons/ice-cream-shop\" title=\"ice cream shop icons\">Ice cream shop icons created by Smashicons - Flaticon</a>"
+                +
                 "</body>" +
                 "</HTML>";
 
-        JOptionPane.showMessageDialog(this, onAboutString, "About MICE", JOptionPane.PLAIN_MESSAGE, null);
+        JDialog about = new JDialog(this, "About MICE");
+        about.setLayout(new BoxLayout(about.getContentPane(), BoxLayout.PAGE_AXIS));
+        about.add(new Canvas());
+        // try {
+        // BufferedImage miceLogo = ImageIO.read(new File("gui/ice-cream-shop.png"));
+        // about.add(new JLabel(new ImageIcon(miceLogo), JLabel.CENTER));
+        // } catch(IOException e) {
+        // }
+        about.add(new JLabel(onAboutString, JLabel.CENTER));
+        about.add(Box.createVerticalStrut(10));
+        about.pack();
+        about.setVisible(true);
     }
 
     public void onOpenClick() {
