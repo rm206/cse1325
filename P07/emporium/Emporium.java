@@ -17,23 +17,17 @@ public class Emporium {
 
     public Emporium(BufferedReader in) throws IOException {
         int temp = Integer.parseInt(in.readLine());
-        System.out.println("before mixin reading number of mixin flavors = " + temp);
         for (int j = 0; j < temp; j++) {
-            System.out.println("starting mix in reading");
             addMixInFlavor(new MixInFlavor(in));
         }
 
         temp = Integer.parseInt(in.readLine());
-        System.out.println("before icecream flavor reading number of icecream flavors = " + temp);
         for (int j = 0; j < temp; j++) {
-            System.out.println("starting icecream flavior reading");
             addIceCreamFlavor(new IceCreamFlavor(in));
         }
 
         temp = Integer.parseInt(in.readLine());
-        System.out.println("before scoops reading number of scoops = " + temp);
         for (int j = 0; j < temp; j++) {
-            System.out.println("starting scoops readin");
             addScoop(new Scoop(in));
         }
     }
