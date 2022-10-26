@@ -3,7 +3,7 @@
 
 int main()
 {
-    std::cout << "Hello, Rishabh!" << std::endl;
+    std::cout << "Hello, Rishabh!\n";
 
     return EXIT_SUCCESS;
 }
