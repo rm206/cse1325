@@ -15,9 +15,9 @@ int main()
 
     std::sort(v.begin(), v.end());
 
-    std::cout<<std::endl<<std::endl;
+    std::cout<<'\n'<<'\n';
     for(auto curr : v)
-        std::cout << curr << std::endl;
+        std::cout << curr << '\n';
 
     return EXIT_SUCCESS;
 }
