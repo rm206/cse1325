@@ -4,7 +4,8 @@
 
 #include "matrix3.h"
 
-int main() {
+int main() 
+{
     Matrix3 m1, m2;
     std::cout << "Enter two 3x3 matrices:" << std::endl;
     std::cin >> m1 >> m2;
