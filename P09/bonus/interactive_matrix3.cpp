@@ -3,6 +3,8 @@
 // This streams in two matrices and then streams out their sum
 
 #include "matrix3.h"
+#include <cstdlib>
+#include <iostream>
 
 int main() 
 {
@@ -12,4 +14,6 @@ int main()
     std::cout << '\n' << m1 << "     +\n" << m2 << "=\n" << m1 + m2 << '\n';
     std::cout << '\n' << m1 << "  * 2 = \n" << m1 * 2 << '\n';
     std::cout << '\n' << m1 << "  * 2 = \n" << 2 * m2 << '\n';
+
+    return EXIT_SUCCESS;
 }
