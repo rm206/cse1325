@@ -43,6 +43,9 @@ import java.awt.Graphics;
 import product.IceCreamFlavor;
 import product.MixInFlavor;
 import product.Scoop;
+import product.Order;
+import product.Container;
+import product.Serving;
 
 public class MainWin extends JFrame {
 
@@ -50,7 +53,7 @@ public class MainWin extends JFrame {
 
         super(MainWintitle);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(700, 500);
+        setSize(1000, 1000);
 
         filename = new File("untitled.mice");
 
@@ -65,12 +68,12 @@ public class MainWin extends JFrame {
         JMenu view = new JMenu("View");
         JMenuItem viewIceCreamFlavor = new JMenuItem("Ice Cream Flavor");
         JMenuItem viewMixInFlavor = new JMenuItem("Mix In Flavor");
-        JMenuItem viewScoop = new JMenuItem("Scoop");
 
         JMenu create = new JMenu("Create");
         JMenuItem createIceCreamFlavor = new JMenuItem("Ice Cream Flavor");
         JMenuItem createMixInFlavor = new JMenuItem("Mixin Flavor");
-        JMenuItem createScoop = new JMenuItem("Scoop");
+        JMenuItem createOrder = new JMenuItem("Order");
+        JMenuItem createContainer = new JMenuItem("Container");
 
         JMenu help = new JMenu("Help");
         JMenuItem about = new JMenuItem("About");
@@ -82,11 +85,11 @@ public class MainWin extends JFrame {
 
         viewIceCreamFlavor.addActionListener(event -> view(Screen.ICE_CREAM_FLAVORS));
         viewMixInFlavor.addActionListener(event -> view(Screen.MIX_IN_FLAVORS));
-        viewScoop.addActionListener(event -> view(Screen.SCOOPS));
 
         createIceCreamFlavor.addActionListener(event -> onCreateIceCreamFlavorClcik());
         createMixInFlavor.addActionListener(event -> onCreateMixInFlavorClick());
-        createScoop.addActionListener(event -> onCreateScoopClick());
+        createOrder.addActionListener(event -> onCreateOrderClick());
+        createContainer.addActionListener(event -> onCreateContainerClick());
 
         about.addActionListener(event -> onAboutClick());
 
@@ -97,11 +100,11 @@ public class MainWin extends JFrame {
 
         view.add(viewIceCreamFlavor);
         view.add(viewMixInFlavor);
-        view.add(viewScoop);
 
         create.add(createIceCreamFlavor);
         create.add(createMixInFlavor);
-        create.add(createScoop);
+        create.add(createOrder);
+        create.add(createContainer);
 
         help.add(about);
 
@@ -220,22 +223,38 @@ public class MainWin extends JFrame {
         toolbar.add(Box.createHorizontalStrut(25));
         toolbar.addSeparator();
 
-        Image createScoopButtonIcon = null;
+        Image createContainerButtonIcon = null;
         try {
-            createScoopButtonIcon = ImageIO
-                    .read(getClass().getResource("/gui/createScoopButtonIcon.png"));
+            createContainerButtonIcon = ImageIO.read(getClass().getResource("/gui/createContainerButtonIcon.png"));
         } catch (IOException i) {
             ;
         } finally {
-            createScoopButton = new JButton();
-            createScoopButton.setActionCommand("Create Scoop");
-            createScoopButton.setToolTipText("Create Scoop");
-            createScoopButton.setIcon(new ImageIcon(createScoopButtonIcon));
-            createScoopButton.setBorder(null);
-            createScoopButton.setPreferredSize(new Dimension(32, 32));
-            createScoopButton.addActionListener(event -> onCreateScoopClick());
-            createScoopButton.setEnabled(false);
-            toolbar.add(createScoopButton);
+            createContainerButton = new JButton();
+            createContainerButton.setActionCommand("Create Container");
+            createContainerButton.setToolTipText("Create Container");
+            createContainerButton.setIcon(new ImageIcon(createContainerButtonIcon));
+            createContainerButton.setBorder(null);
+            createContainerButton.setPreferredSize(new Dimension(32, 32));
+            createContainerButton.addActionListener(event -> onCreateContainerClick());
+            toolbar.add(createContainerButton);
+        }
+        toolbar.add(Box.createHorizontalStrut(25));
+        toolbar.addSeparator();
+
+        Image createOrderButtonIcon = null;
+        try {
+            createOrderButtonIcon = ImageIO.read(getClass().getResource("/gui/createOrderButtonIcon.png"));
+        } catch (IOException i) {
+            ;
+        } finally {
+            createOrderButton = new JButton();
+            createOrderButton.setActionCommand("Create Order");
+            createOrderButton.setToolTipText("Create Order");
+            createOrderButton.setIcon(new ImageIcon(createOrderButtonIcon));
+            createOrderButton.setBorder(null);
+            createOrderButton.setPreferredSize(new Dimension(32, 32));
+            createOrderButton.addActionListener(event -> onCreateOrderClick());
+            toolbar.add(createOrderButton);
         }
         toolbar.add(Box.createHorizontalStrut(25));
         toolbar.addSeparator();
@@ -278,21 +297,40 @@ public class MainWin extends JFrame {
         toolbar.add(Box.createHorizontalStrut(25));
         toolbar.addSeparator();
 
-        Image viewScoopsButtonIcon = null;
+        Image viewContainerButtonIcon = null;
         try {
-            viewScoopsButtonIcon = ImageIO
-                    .read(getClass().getResource("/gui/viewScoopsButtonIcon.png"));
+            viewContainerButtonIcon = ImageIO
+                    .read(getClass().getResource("/gui/viewContainerButtonIcon.png"));
         } catch (IOException i) {
             ;
         } finally {
-            viewScoopsButton = new JButton();
-            viewScoopsButton.setActionCommand("View Scoops");
-            viewScoopsButton.setToolTipText("View Scoops");
-            viewScoopsButton.setIcon(new ImageIcon(viewScoopsButtonIcon));
-            viewScoopsButton.setBorder(null);
-            viewScoopsButton.setPreferredSize(new Dimension(32, 32));
-            viewScoopsButton.addActionListener(event -> view(Screen.SCOOPS));
-            toolbar.add(viewScoopsButton);
+            viewContainerButton = new JButton();
+            viewContainerButton.setActionCommand("View Containers");
+            viewContainerButton.setToolTipText("View Containers");
+            viewContainerButton.setIcon(new ImageIcon(viewContainerButtonIcon));
+            viewContainerButton.setBorder(null);
+            viewContainerButton.setPreferredSize(new Dimension(32, 32));
+            viewContainerButton.addActionListener(event -> view(Screen.CONTAINERS));
+            toolbar.add(viewContainerButton);
+        }
+        toolbar.add(Box.createHorizontalStrut(25));
+        toolbar.addSeparator();
+
+        Image viewOrderButtonIcon = null;
+        try {
+            viewOrderButtonIcon = ImageIO
+                    .read(getClass().getResource("/gui/viewOrderButtonIcon.png"));
+        } catch (IOException i) {
+            ;
+        } finally {
+            viewOrderButton = new JButton();
+            viewOrderButton.setActionCommand("View Orders");
+            viewOrderButton.setToolTipText("View Orders");
+            viewOrderButton.setIcon(new ImageIcon(viewOrderButtonIcon));
+            viewOrderButton.setBorder(null);
+            viewOrderButton.setPreferredSize(new Dimension(32, 32));
+            viewOrderButton.addActionListener(event -> view(Screen.ORDERS));
+            toolbar.add(viewOrderButton);
         }
         toolbar.add(Box.createHorizontalStrut(25));
         toolbar.addSeparator();
@@ -407,7 +445,7 @@ public class MainWin extends JFrame {
                             new product.IceCreamFlavor(nameOfFlavor.getText(), descriptionOfFlavor.getText(),
                                     Integer.valueOf(priceOfFlavor.getText()),
                                     Integer.valueOf(costOfFlavor.getText())));
-                    createScoopButton.setEnabled(emporium.iceCreamFlavors() != null);
+                    createOrderButton.setEnabled(emporium.iceCreamFlavors() != null);
                 }
                 view(Screen.ICE_CREAM_FLAVORS);
             }
@@ -525,7 +563,7 @@ public class MainWin extends JFrame {
         createMixInFlavorDialog cminfd = new createMixInFlavorDialog(this);
     }
 
-    public void onCreateScoopClick() {
+    public product.Scoop onCreateScoop() {
         product.Scoop scoopToAdd = new product.Scoop();
         product.IceCreamFlavor iceCreamFlavorForScoop = (product.IceCreamFlavor) JOptionPane.showInputDialog(
                 this,
@@ -566,9 +604,184 @@ public class MainWin extends JFrame {
             } while (mixInFlavorForScoop != null);
 
             if (scoopToAdd != null)
-                emporium.addScoop(scoopToAdd);
+                return scoopToAdd;
         }
-        view(Screen.SCOOPS);
+
+        return null;
+    }
+
+    public void onCreateContainerClick() {
+        class createContainerDialog extends JDialog {
+            private final static int width = 400;
+            private final static int height = 400;
+
+            private boolean canceled;
+
+            private JTextField nameOfContainer;
+            private JTextField descriptionOfContainer;
+            private JTextField maxscoops;
+
+            createContainerDialog(Frame aFrame) {
+                super(aFrame, "Create Container", true);
+                setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                canceled = true;
+                setSize(width, height);
+                setLayout(new GridBagLayout());
+                GridBagConstraints constraints = new GridBagConstraints();
+                constraints.gridwidth = 1;
+                constraints.gridheight = 1;
+                constraints.weightx = 1;
+                constraints.weighty = 0;
+                constraints.insets = new Insets(2, 5, 2, 5);
+                constraints.fill = GridBagConstraints.BOTH;
+                constraints.anchor = GridBagConstraints.LINE_START;
+                GridBagConstraints constraintsLabel = (GridBagConstraints) constraints.clone();
+                constraintsLabel.weightx = 0;
+
+                JLabel name = new JLabel("Name");
+                constraintsLabel.gridx = 0;
+                constraintsLabel.gridy = 0;
+                add(name, constraintsLabel);
+                nameOfContainer = new JTextField(20);
+                nameOfContainer.setText("");
+                constraints.gridx = 1;
+                constraints.gridy = 0;
+                constraints.weighty = 1;
+                add(nameOfContainer, constraints);
+
+                JLabel description = new JLabel("Description");
+                constraintsLabel.gridx = 0;
+                constraintsLabel.gridy = 1;
+                add(description, constraintsLabel);
+                descriptionOfContainer = new JTextField(20);
+                descriptionOfContainer.setText("");
+                constraints.gridx = 1;
+                constraints.gridy = 1;
+                constraints.weighty = 1;
+                add(descriptionOfContainer, constraints);
+
+                JLabel price = new JLabel("Max Scoops");
+                constraintsLabel.gridx = 0;
+                constraintsLabel.gridy = 2;
+                add(price, constraintsLabel);
+                maxscoops = new JTextField(20);
+                maxscoops.setText("");
+                constraints.gridx = 1;
+                constraints.gridy = 2;
+                constraints.weighty = 1;
+                add(maxscoops, constraints);
+
+                JPanel panel = new JPanel();
+                JButton okButton = new JButton("OK");
+                okButton.addActionListener(event -> {
+                    canceled = false;
+                    setVisible(false);
+                });
+                panel.add(okButton);
+
+                JButton cancelButton = new JButton("Cancel");
+                cancelButton.addActionListener(event -> {
+                    canceled = true;
+                    setVisible(false);
+                });
+                panel.add(cancelButton);
+
+                constraints.gridx = 0;
+                constraints.gridy = 4;
+                constraints.gridwidth = 2;
+                constraints.anchor = GridBagConstraints.CENTER;
+                add(panel, constraints);
+
+                pack();
+                setVisible(true);
+                if (!canceled && !nameOfContainer.getText().equals("") && !descriptionOfContainer.getText().equals("")
+                        &&
+                        !maxscoops.getText().equals("")) {
+                    emporium.addContainer(
+                            new product.Container(nameOfContainer.getText(), descriptionOfContainer.getText(),
+                                    Integer.valueOf(maxscoops.getText())));
+                }
+                view(Screen.CONTAINERS);
+            }
+
+        }
+        createContainerDialog ccd = new createContainerDialog(this);
+    }
+
+    public product.Serving onCreateServingClick() {
+        product.Serving servingToAdd = new product.Serving();
+        product.Container containerForServing = (product.Container) JOptionPane.showInputDialog(
+                this,
+                "Pick Container",
+                "New Serving",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                emporium.containers(),
+                null);
+        if (containerForServing != null) {
+            servingToAdd = new Serving(containerForServing);
+        }
+        if (containerForServing != null) {
+            ArrayList<product.Scoop> scoopForServingList = new ArrayList<>();
+            product.Scoop scoopForServing = null;
+            do {
+                scoopForServing = onCreateScoop();
+                if(scoopForServing != null)
+                    scoopForServingList.add(scoopForServing);
+            } while (scoopForServing != null);
+
+            if (scoopForServingList.size() > 0) {
+                for (product.Scoop s : scoopForServingList) {
+                    servingToAdd.addScoop(s);
+                }
+
+                product.MixInFlavor toppingMixInFlavorForServing = null;
+                do {
+                    toppingMixInFlavorForServing = (product.MixInFlavor) JOptionPane.showInputDialog(
+                            this,
+                            "Pick Mix In flavor for topping in serving",
+                            "New Serving",
+                            JOptionPane.QUESTION_MESSAGE,
+                            null,
+                            emporium.mixInFlavors(),
+                            null);
+                    if (toppingMixInFlavorForServing != null) {
+                        product.MixInAmount toppingMixInAmountForServing = (product.MixInAmount) JOptionPane.showInputDialog(
+                                this,
+                                "Pick Mix In Amount for toppin in serving",
+                                "New Serving",
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                product.MixInAmount.values(),
+                                null);
+    
+                        product.MixIn mixInForScoop = new product.MixIn(toppingMixInFlavorForServing, toppingMixInAmountForServing);
+                        servingToAdd.addTopping(mixInForScoop);
+                    }
+    
+                } while (toppingMixInFlavorForServing != null);
+
+                return servingToAdd;
+            }
+        }
+
+        return null;
+    }
+
+    public void onCreateOrderClick() {
+        product.Serving tempServing = null;
+        product.Order orderToAdd = null;
+        do {
+            tempServing = onCreateServingClick();
+            if(tempServing != null) {
+                if (orderToAdd == null)
+                    orderToAdd = new Order();
+                orderToAdd.addServing(tempServing);
+            }
+        } while(tempServing != null);
+
+        if (orderToAdd != null)
+            emporium.addOrder(orderToAdd);
     }
 
     public void onAboutClick() {
@@ -607,7 +820,12 @@ public class MainWin extends JFrame {
                 +
                 "<a href=\"https://www.flaticon.com/free-icons/ice-cream-shop\" title=\"ice cream shop icons\">Ice cream shop icons created by Smashicons - Flaticon</a>"
                 +
-                "</body>" +
+                "<a href=\"https://www.flaticon.com/free-icons/stock\" title=\"stock icons\">Stock icons created by Freepik - Flaticon</a>"
+                +
+                "<a href=\"https://www.flaticon.com/free-icons/ice-cream\" title=\"ice cream icons\">Ice cream icons created by amonrat rungreangfangsai - Flaticon</a>"
+                +
+                "</body>" 
+                +
                 "</HTML>";
 
         JDialog about = new JDialog(this, "About MICE");
@@ -643,7 +861,7 @@ public class MainWin extends JFrame {
                     throw new RuntimeException("Incompatible MICE file format");
 
                 emporium = new Emporium(br);
-                view(Screen.SCOOPS);
+                view(Screen.ICE_CREAM_FLAVORS);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Cannot open " + filename + '\n' + e, "Failed",
                         JOptionPane.ERROR_MESSAGE);
@@ -703,14 +921,24 @@ public class MainWin extends JFrame {
             to_display_string_2 += "</HTML>";
             display.setText(to_display_string_1 + to_display_string_2);
         }
-
-        if (screen == Screen.SCOOPS) {
+        if (screen == Screen.CONTAINERS) {
             to_display_string_1 = "";
             to_display_string_2 = "";
-            to_display_string_1 += "<HTML><h1>SCOOPS</h1><br/>";
-            if (emporium.scoops() != null)
-                for (int i = 0; i < emporium.scoops().length; i++) {
-                    to_display_string_2 += String.format("<h2>%s</h2>", (emporium.scoops()[i]).toString());
+            to_display_string_1 += "<HTML><h1>CONTAINERS</h1><br/>";
+            if (emporium.containers() != null)
+                for (int i = 0; i < emporium.containers().length; i++) {
+                    to_display_string_2 += String.format("<h2>%s</h2>", (emporium.containers()[i]).toString());
+                }
+            to_display_string_2 += "</HTML>";
+            display.setText(to_display_string_1 + to_display_string_2);
+        }
+        if (screen == Screen.ORDERS) {
+            to_display_string_1 = "";
+            to_display_string_2 = "";
+            to_display_string_1 += "<HTML><h1>ORDERS</h1><br/>";
+            if (emporium.orders() != null)
+                for (int i = 0; i < emporium.orders().length; i++) {
+                    to_display_string_2 += String.format("<h2>%s</h2>", (emporium.orders()[i]).toString());
                 }
             to_display_string_2 += "</HTML>";
             display.setText(to_display_string_1 + to_display_string_2);
@@ -720,7 +948,8 @@ public class MainWin extends JFrame {
     private enum Screen {
         ICE_CREAM_FLAVORS,
         MIX_IN_FLAVORS,
-        SCOOPS
+        CONTAINERS,
+        ORDERS
     }
 
     private JLabel display = new JLabel();
@@ -732,10 +961,12 @@ public class MainWin extends JFrame {
     private JButton openButton;
     private JButton createIceCreamFlavorButton;
     private JButton createMixInFlavorButton;
-    private JButton createScoopButton;
+    private JButton createContainerButton;
+    private JButton createOrderButton;
     private JButton viewIceCreamFlavorsButton;
     private JButton viewMixInFlavorsButton;
-    private JButton viewScoopsButton;
+    private JButton viewOrderButton;
+    private JButton viewContainerButton;
 
     private File filename;
     private String FILE_VERSION = "1.0";

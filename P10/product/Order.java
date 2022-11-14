@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 public class Order {
     
+    public Order() {
+        servings = null;
+    }
+    
     public Order(BufferedReader in) throws IOException {
         int noOfServings = Integer.parseInt(in.readLine());
         for(int i = 0 ; i < noOfServings ; i++) {
@@ -22,7 +26,18 @@ public class Order {
     }
 
     public void addServing(Serving serving) {
+        if(servings == null)
+            servings = new ArrayList<>();
         servings.add(serving);
+    }
+
+    @Override
+    public String toString() {
+        String toret = "";
+        for(Serving s : servings)
+            toret += s.toString() + "\n";
+
+        return toret;
     }
 
     private ArrayList<Serving> servings;

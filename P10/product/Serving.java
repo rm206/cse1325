@@ -11,6 +11,10 @@ import product.MixIn;
 
 public class Serving {
     
+    public Serving() {
+        this.container = null;
+    }
+    
     public Serving(Container container) {
         this.container = container;
     }
@@ -55,6 +59,19 @@ public class Serving {
             this.topping = new ArrayList<>();
         }
         this.topping.add(topping);
+    }
+
+    @Override
+    public String toString() {
+        String toret = "";
+        toret += container.toString() + " ";
+        for(Scoop s : scoop) {
+            toret += s.toString() + " ";
+        }
+        for(MixIn m : topping) {
+            toret += m.toString() + " ";
+        }
+        return toret;
     }
     
     private Container container;
