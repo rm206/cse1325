@@ -254,6 +254,7 @@ public class MainWin extends JFrame {
             createOrderButton.setBorder(null);
             createOrderButton.setPreferredSize(new Dimension(32, 32));
             createOrderButton.addActionListener(event -> onCreateOrderClick());
+            createOrderButton.setEnabled(false);
             toolbar.add(createOrderButton);
         }
         toolbar.add(Box.createHorizontalStrut(25));
@@ -739,7 +740,7 @@ public class MainWin extends JFrame {
                 do {
                     toppingMixInFlavorForServing = (product.MixInFlavor) JOptionPane.showInputDialog(
                             this,
-                            "Pick Mix In flavor for topping in serving",
+                            "Pick topping",
                             "New Serving",
                             JOptionPane.QUESTION_MESSAGE,
                             null,
@@ -782,6 +783,8 @@ public class MainWin extends JFrame {
 
         if (orderToAdd != null)
             emporium.addOrder(orderToAdd);
+        
+        view(Screen.ORDERS);
     }
 
     public void onAboutClick() {

@@ -68,6 +68,7 @@ public class Serving {
         for(Scoop s : scoop) {
             toret += s.toString() + " ";
         }
+        toret += "Toppings : ";
         for(MixIn m : topping) {
             toret += m.toString() + " ";
         }

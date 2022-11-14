@@ -14,7 +14,7 @@ public class Order {
     public Order(BufferedReader in) throws IOException {
         int noOfServings = Integer.parseInt(in.readLine());
         for(int i = 0 ; i < noOfServings ; i++) {
-            servings.add(new Serving(in));
+            addServing(new Serving(in));
         }
     }
 
