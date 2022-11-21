@@ -10,6 +10,7 @@ import product.IceCreamFlavor;
 import product.MixInFlavor;
 import product.Container;
 import product.Order;
+import product.Serving;
 
 public class Emporium {
 
@@ -98,6 +99,14 @@ public class Emporium {
         if (orders == null)
             orders = new ArrayList<>();
         orders.add(order);
+
+        if(favoriteServing == null) {
+            favoriteServing = new MultiMap<>();
+        }
+        Customer key = order.getCustomer();
+        for (Serving s : order.getServings()) {
+            favoriteServing.put(key, s);
+        }
     }
 
     public void addCustomer(Customer customer) {
@@ -136,9 +145,14 @@ public class Emporium {
         return customers.toArray();
     }
 
+    public Object[] favortiteServing(Customer customer) {
+        return this.favoriteServing.get(customer);
+    }
+
     private ArrayList<MixInFlavor> mixInFlavors;
     private ArrayList<IceCreamFlavor> iceCreamFlavors;
     private ArrayList<Container> containers;
     private ArrayList<Order> orders;
     private ArrayList<Customer> customers;
+    private MultiMap<Customer, Serving> favoriteServing;
 }

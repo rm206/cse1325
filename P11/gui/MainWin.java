@@ -753,7 +753,17 @@ public class MainWin extends JFrame {
         createContainerDialog ccd = new createContainerDialog(this);
     }
 
-    public product.Serving onCreateServingClick() {
+    public product.Serving onCreateServingClick(Customer customer) {
+        if (customer != null) {
+            Object[] favoriteServings = emporium.favortiteServing(customer);
+            if (favoriteServings.length != 0) {
+                product.Serving servingToReturn = (product.Serving) JOptionPane.showInputDialog(this, "Select Serving", "Select Serving", JOptionPane.QUESTION_MESSAGE, null, favoriteServings, favoriteServings[0]);
+                if (servingToReturn != null)
+                    return servingToReturn;
+                else
+                    return onCreateServingClick(null);
+            }
+        }
         product.Serving servingToAdd = new product.Serving();
         product.Container containerForServing = (product.Container) JOptionPane.showInputDialog(
                 this,
@@ -829,7 +839,7 @@ public class MainWin extends JFrame {
             product.Serving tempServing = null;
             product.Order orderToAdd = new Order(customerToAdd);
             do {
-                tempServing = onCreateServingClick();
+                tempServing = onCreateServingClick(customerToAdd);
                 if (tempServing != null) {
                     if (orderToAdd == null)
                         orderToAdd = new Order(customerToAdd);

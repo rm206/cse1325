@@ -43,6 +43,10 @@ public class Order {
         return customer;
     }
 
+    public ArrayList<Serving> getServings() {
+        return servings;
+    }
+
     @Override
     public String toString() {
         String toret = "";
