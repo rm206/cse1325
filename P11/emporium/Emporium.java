@@ -67,6 +67,13 @@ public class Emporium {
                 o.save(out);
             }
         }
+
+        if (customers.size() > 0) {
+            out.write("" + customers.size() + "\n");
+            for (person.Customer p : customers) {
+                p.save(out);
+            }
+        }
     }
 
     public void addMixInFlavor(MixInFlavor flavor) {

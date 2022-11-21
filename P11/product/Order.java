@@ -5,10 +5,17 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import person.Customer;
+
 public class Order {
 
     public Order() {
         servings = null;
+        customer = null;
+    }
+
+    public Order(Customer customer) {
+        this.customer = customer;
     }
 
     public Order(BufferedReader in) throws IOException {
@@ -16,6 +23,7 @@ public class Order {
         for (int i = 0; i < noOfServings; i++) {
             addServing(new Serving(in));
         }
+        customer = new Customer(in);
     }
 
     public void save(BufferedWriter out) throws IOException {
@@ -31,6 +39,10 @@ public class Order {
         servings.add(serving);
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
     @Override
     public String toString() {
         String toret = "";
@@ -41,6 +53,10 @@ public class Order {
             toret += "Total price : ";
             toret += this.price();
         }
+
+        if (customer != null)
+            toret += customer.toString();
+        
         return toret;
     }
 
@@ -55,4 +71,5 @@ public class Order {
     }
 
     private ArrayList<Serving> servings;
+    private Customer customer;
 }

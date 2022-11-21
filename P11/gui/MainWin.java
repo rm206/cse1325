@@ -28,6 +28,8 @@ import java.awt.Dimension;
 import java.awt.Image;
 import javax.imageio.ImageIO;
 import javax.management.RuntimeErrorException;
+import javax.print.attribute.standard.MediaPrintableArea;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -274,7 +276,7 @@ public class MainWin extends JFrame {
             createCustomerButton.setBorder(null);
             createCustomerButton.setPreferredSize(new Dimension(32, 32));
             createCustomerButton.addActionListener(event -> onCreateCustomerClick());
-            createCustomerButton.setEnabled(false);
+            createCustomerButton.setEnabled(true);
             toolbar.add(createCustomerButton);
         }
         toolbar.add(Box.createHorizontalStrut(25));
@@ -355,6 +357,28 @@ public class MainWin extends JFrame {
         }
         toolbar.add(Box.createHorizontalStrut(25));
         toolbar.addSeparator();
+
+        Image viewCustomerButtonIcon = null;
+        try {
+            viewCustomerButtonIcon = ImageIO
+                    .read(getClass().getResource("/gui/viewCustomerButtonIcon.png"));
+        } catch (IOException i) {
+            ;
+        } finally {
+            viewCustomerButton = new JButton();
+            viewCustomerButton.setActionCommand("View Customers");
+            viewCustomerButton.setToolTipText("View Customers");
+            viewCustomerButton.setIcon(new ImageIcon(viewCustomerButtonIcon));
+            viewCustomerButton.setBorder(null);
+            viewCustomerButton.setPreferredSize(new Dimension(32, 32));
+            viewCustomerButton.addActionListener(event -> view(Screen.CUSTOMERS));
+            toolbar.add(viewCustomerButton);
+        }
+        toolbar.add(Box.createHorizontalStrut(25));
+        toolbar.addSeparator();
+
+        getContentPane().add(toolbar, BorderLayout.PAGE_START);
+        setVisible(true);
 
         getContentPane().add(toolbar, BorderLayout.PAGE_START);
         setVisible(true);
@@ -466,7 +490,7 @@ public class MainWin extends JFrame {
                             new product.IceCreamFlavor(nameOfFlavor.getText(), descriptionOfFlavor.getText(),
                                     Integer.valueOf(priceOfFlavor.getText()),
                                     Integer.valueOf(costOfFlavor.getText())));
-                    createOrderButton.setEnabled(emporium.iceCreamFlavors() != null);
+                    createOrderButton.setEnabled(emporium.iceCreamFlavors() != null && emporium.customers() != null);
                 }
                 view(Screen.ICE_CREAM_FLAVORS);
             }
@@ -794,21 +818,31 @@ public class MainWin extends JFrame {
     }
 
     public void onCreateOrderClick() {
-        product.Serving tempServing = null;
-        product.Order orderToAdd = null;
-        do {
-            tempServing = onCreateServingClick();
-            if (tempServing != null) {
-                if (orderToAdd == null)
-                    orderToAdd = new Order();
-                orderToAdd.addServing(tempServing);
-            }
-        } while (tempServing != null);
+        while (emporium.customers() == null) {
+            JOptionPane.showMessageDialog(this, "Please create a customer first");
+            onCreateCustomerClick();
+        }
 
-        if (orderToAdd != null)
-            emporium.addOrder(orderToAdd);
+        person.Customer customerToAdd = (person.Customer) JOptionPane.showInputDialog(this, "Selected Customer",
+                "Select Customers", JOptionPane.QUESTION_MESSAGE, null, emporium.customers(), emporium.customers()[0]);
+        if (customerToAdd != null) {
+            product.Serving tempServing = null;
+            product.Order orderToAdd = new Order(customerToAdd);
+            do {
+                tempServing = onCreateServingClick();
+                if (tempServing != null) {
+                    if (orderToAdd == null)
+                        orderToAdd = new Order(customerToAdd);
+                    orderToAdd.addServing(tempServing);
+                }
+            } while (tempServing != null);
 
-        view(Screen.ORDERS);
+            if (orderToAdd != null)
+                emporium.addOrder(orderToAdd);
+
+            view(Screen.ORDERS);
+        }
+
     }
 
     public void onCreateCustomerClick() {
@@ -849,7 +883,7 @@ public class MainWin extends JFrame {
                 constraints.weighty = 1;
                 add(nameOfCustomer, constraints);
 
-                JLabel phone = new JLabel("Description");
+                JLabel phone = new JLabel("Phone");
                 constraintsLabel.gridx = 0;
                 constraintsLabel.gridy = 1;
                 add(phone, constraintsLabel);
@@ -885,6 +919,7 @@ public class MainWin extends JFrame {
                 setVisible(true);
                 if (!canceled && !nameOfCustomer.getText().equals("") && !phoneOfCustomer.getText().equals("")) {
                     emporium.addCustomer(new person.Customer(nameOfCustomer.getText(), phoneOfCustomer.getText()));
+                    createOrderButton.setEnabled(emporium.iceCreamFlavors() != null && emporium.customers() != null);
                 }
                 view(Screen.CUSTOMERS);
             }
@@ -1094,6 +1129,7 @@ public class MainWin extends JFrame {
     private JButton viewMixInFlavorsButton;
     private JButton viewOrderButton;
     private JButton viewContainerButton;
+    private JButton viewCustomerButton;
 
     private File filename;
     private String FILE_VERSION = "1.0";
