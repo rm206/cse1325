@@ -1,0 +1,224 @@
+====================
+HOMEWORK P12 RESULTS
+====================
+
+Fall 2022
+
+
+FULL CREDIT
+===========
+
+NOTE: These are measurements which may vary plus your opinions which may vary a LOT. We won't grade for "correctness", just completeness.
+
+QUESTION 1: What Solver command line arguments did you use to achieve a 30 to 45 second runtime? Note: We're only interested in the "real" seconds for this question.
+
+
+**Solving pol4.poly only**
+ANSWER 1: threads = 1: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+QUESTION 2: Provide the full output (including the time command) for your program, with 1 to 16 threads. **Ensure that the result is the same for all 16 runs.** (The root found may vary in the least significant digits.) With bash, you can run all of these with a single command if you like, adding whatever Solver command line arguments you identified in QUESTION 1: 
+
+for i in {1..16} ; do time java Solver --threads $i polys/poly4.poly ; done
+Loading polys/poly4.poly... done
+
+threads = 1: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+polys/poly4.poly: +1.00000x^4-10.3000x^3-166.500x^2+835.900x^1+991.100x^0 has 4 roots
+  [-10.999999591886702, -0.9999995919655189, 5.300000408052986, 17.000000407729956]
+
+
+real	0m43.218s
+user	0m42.987s
+sys	0m0.192s
+Loading polys/poly4.poly... done
+
+threads = 2: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+polys/poly4.poly: +1.00000x^4-10.3000x^3-166.500x^2+835.900x^1+991.100x^0 has 0 roots
+  []
+
+
+real	0m22.104s
+user	0m43.956s
+sys	0m0.110s
+Loading polys/poly4.poly... done
+
+threads = 3: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+polys/poly4.poly: +1.00000x^4-10.3000x^3-166.500x^2+835.900x^1+991.100x^0 has 0 roots
+  []
+
+
+real	0m14.807s
+user	0m44.026s
+sys	0m0.088s
+Loading polys/poly4.poly... done
+
+threads = 4: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+polys/poly4.poly: +1.00000x^4-10.3000x^3-166.500x^2+835.900x^1+991.100x^0 has 0 roots
+  []
+
+
+real	0m11.308s
+user	0m44.574s
+sys	0m0.087s
+Loading polys/poly4.poly... done
+
+threads = 5: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+polys/poly4.poly: +1.00000x^4-10.3000x^3-166.500x^2+835.900x^1+991.100x^0 has 2 roots
+  [-11.000000447469528, -1.000000447714873]
+
+
+real	0m9.174s
+user	0m45.094s
+sys	0m0.089s
+Loading polys/poly4.poly... done
+
+threads = 6: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+polys/poly4.poly: +1.00000x^4-10.3000x^3-166.500x^2+835.900x^1+991.100x^0 has 4 roots
+  [5.300000499965382, 16.99999950001687, -10.999999524060105, -0.9999995241426229]
+
+
+real	0m8.006s
+user	0m46.005s
+sys	0m0.132s
+Loading polys/poly4.poly... done
+
+threads = 7: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+polys/poly4.poly: +1.00000x^4-10.3000x^3-166.500x^2+835.900x^1+991.100x^0 has 4 roots
+  [5.299999500038236, 16.99999950018912, -10.99999956658693, -0.9999995664738357]
+
+
+real	0m7.269s
+user	0m47.078s
+sys	0m0.147s
+Loading polys/poly4.poly... done
+
+threads = 8: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+polys/poly4.poly: +1.00000x^4-10.3000x^3-166.500x^2+835.900x^1+991.100x^0 has 4 roots
+  [5.300000499968887, 16.99999950004444, -10.999999541638637, -0.9999995416563903]
+
+
+real	0m7.021s
+user	0m48.033s
+sys	0m0.144s
+Loading polys/poly4.poly... done
+
+threads = 9: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+polys/poly4.poly: +1.00000x^4-10.3000x^3-166.500x^2+835.900x^1+991.100x^0 has 4 roots
+  [5.300000499976006, 16.999999500323554, -11.00000046854898, -1.0000004684711195]
+
+
+real	0m6.975s
+user	0m47.909s
+sys	0m0.158s
+Loading polys/poly4.poly... done
+
+threads = 10: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+polys/poly4.poly: +1.00000x^4-10.3000x^3-166.500x^2+835.900x^1+991.100x^0 has 4 roots
+  [5.299999500017789, 17.000000499694757, -11.000000458838223, -1.0000004589170273]
+
+
+real	0m6.926s
+user	0m47.978s
+sys	0m0.161s
+Loading polys/poly4.poly... done
+
+threads = 11: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+polys/poly4.poly: +1.00000x^4-10.3000x^3-166.500x^2+835.900x^1+991.100x^0 has 4 roots
+  [5.299999500019133, 17.000000499954893, -11.000000489246204, -1.0000004892412486]
+
+
+real	0m7.174s
+user	0m47.645s
+sys	0m0.224s
+Loading polys/poly4.poly... done
+
+threads = 12: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+polys/poly4.poly: +1.00000x^4-10.3000x^3-166.500x^2+835.900x^1+991.100x^0 has 4 roots
+  [5.3000004999744945, 17.000000499877956, -10.999999516954674, -0.9999995170279394]
+
+
+real	0m6.956s
+user	0m47.782s
+sys	0m0.192s
+Loading polys/poly4.poly... done
+
+threads = 13: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+polys/poly4.poly: +1.00000x^4-10.3000x^3-166.500x^2+835.900x^1+991.100x^0 has 4 roots
+  [5.299999500013151, 17.00000049998151, -10.999999514164891, -0.9999995141335254]
+
+
+real	0m6.951s
+user	0m47.881s
+sys	0m0.195s
+Loading polys/poly4.poly... done
+
+threads = 14: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+polys/poly4.poly: +1.00000x^4-10.3000x^3-166.500x^2+835.900x^1+991.100x^0 has 4 roots
+  [5.299999500008129, 16.99999950015902, -10.999999534104973, -0.9999995340236008]
+
+
+real	0m7.126s
+user	0m47.632s
+sys	0m0.250s
+Loading polys/poly4.poly... done
+
+threads = 15: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+polys/poly4.poly: +1.00000x^4-10.3000x^3-166.500x^2+835.900x^1+991.100x^0 has 4 roots
+  [5.299999500000906, 16.99999950011162, -11.000000485069108, -1.0000004850257806]
+
+
+real	0m7.172s
+user	0m47.709s
+sys	0m0.238s
+Loading polys/poly4.poly... done
+
+threads = 16: range -1000.0 to 1000.0, 1.0E8 slices, precision = 1.0E-6
+
+polys/poly4.poly: +1.00000x^4-10.3000x^3-166.500x^2+835.900x^1+991.100x^0 has 4 roots
+  [5.299999500004644, 17.00000049982205, -11.000000483296443, -1.0000004833696885]
+
+
+real	0m6.946s
+user	0m47.953s
+sys	0m0.206s
+
+
+QUESTION 3: Does adding more threads continue to speed up the program? Do more threads ever slow down the program slightly?  Why or why not?
+
+
+The prohram speeds up in the beginnig and then the real time flattens out as threads are added.
+
+
+QUESTION 4: Does adding more threads increase the "system load", or is it constant regardless of the number of threads?  Why?
+
+The system load first decreases and then incerses possibly because the system is having to load threads which aren't doing a lot of work when compared to the number of threads being loaded up.
+
+
+BONUS
+=====
+
+QUESTION 5: Time your version of ThreadedSolver as you did for the full credit version. Is this additional layer of threading faster, slower, or roughly equivalent in performance? Why?
+
+
+
+
+
+YOUR Timing:
+
+
+
+
